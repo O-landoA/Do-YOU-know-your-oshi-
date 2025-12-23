@@ -10,128 +10,129 @@ export const quizContent = {
   questions: [
     {
       id: 1,
-      question: "What is Ina'nis's favorite food?",
+      question: "Arguably her first pun, the kanji for which number is featured in Ina's name?",
       answers: [
-        "Takoyaki",
-        "Ramen",
-        "Sushi",
-        "Tempura"
+        "1",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]"
       ],
       correct: 0, // Index of correct answer (0-based)
-      trivia: "Ina'nis absolutely loves takoyaki! She often mentions it during streams and it's become a running gag in the community.",
+      trivia: "Her surname, Ninomae, is simply written with the kanji 一, meaning \"one.\" This is a kanji pun; \"ni no mae\" means \"before two.\" It is an example of nanori, or idiosyncratic readings of kanji which only appear in names.",
       videoId: null, // YouTube video ID or null for no video
       clue: {
         filename: "clue-1.pdf",
         thumbnail: "clue-1-thumb.jpg",
-        title: "Clue 1: Ina'nis's Origins"
+        title: "Clue 1"
       }
     },
     {
       id: 2,
-      question: "When did Ina'nis debut?",
+      question: "\"We Are Hype\" represents which of the 10 WAH's of the Tentacult?",
       answers: [
-        "September 2020",
-        "December 2020",
-        "March 2021",
-        "June 2021"
+        "2",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]"
       ],
       correct: 0,
-      trivia: "Ina'nis debuted on September 12, 2020, as part of Hololive English -Myth-.",
-      videoId: "dQw4w9WgXcQ", // Example YouTube ID
+      trivia: "First suggested by channel member Rayett Ray in chat of the original Ender Lilies #2 stream, as \"we all HYPE.\"",
+      videoId: "yoYaAVixPg8", // Will show at 1h18m12s
+      videoId2: "u2IwXhwO4Tc", // Second video for this question
       clue: {
         filename: "clue-2.pdf",
         thumbnail: "clue-2-thumb.jpg",
-        title: "Clue 2: The Debut"
+        title: "Clue 2"
       }
     },
     {
       id: 3,
-      question: "What is the name of Ina'nis's mascot?",
+      question: "The official 8th WAH (We Adore Her), part of the New Generation of WAHs, was canonised by Ina in which Pokémon Violet Stream?",
       answers: [
-        "Takodachi",
-        "Wakko",
-        "Ika",
-        "Mollusk"
+        "#8",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]"
       ],
       correct: 0,
-      trivia: "The Takodachi are Ina'nis's loyal followers, often depicted as cute octopus-like creatures!",
-      videoId: null,
+      trivia: "The 8th WAH (We Adore Her) was officially canonised during Pokémon Violet Stream #8.",
+      videoId: "gQoGK9YDcEY", // Will show at 1h3m
       clue: {
         filename: "clue-3.pdf",
         thumbnail: "clue-3-thumb.jpg",
-        title: "Clue 3: Meet the Takodachi"
+        title: "Clue 3"
       }
     },
     {
       id: 4,
-      question: "What is Ina'nis's signature catchphrase?",
+      question: "How many episodes are in the \"TTRPG - Myth Breakers\" playlist?",
       answers: [
-        "Wah!",
-        "Hello hello!",
-        "Tako time!",
-        "Ina ina!"
+        "9",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]"
       ],
       correct: 0,
-      trivia: "'Wah!' has become Ina'nis's iconic catchphrase, often said when surprised or excited.",
-      videoId: null,
+      trivia: "The TTRPG - Myth Breakers playlist contains 9 episodes of tabletop RPG adventures with the Myth members.",
+      playlistId: "PLQZecHYc3j2pIhdKqZwb7Jz73laAsLKYE", // Playlist instead of single video
       clue: {
         filename: "clue-4.pdf",
         thumbnail: "clue-4-thumb.jpg",
-        title: "Clue 4: The Wah Heard 'Round the World"
+        title: "Clue 4"
       }
     },
     {
       id: 5,
-      question: "What instrument does Ina'nis play?",
+      question: "The number of Quotes on Ina's Virtual YouTube Wiki page divided by 4.125 is...",
       answers: [
-        "Ukulele",
-        "Piano",
-        "Guitar",
-        "Flute"
+        "8",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]"
       ],
       correct: 0,
-      trivia: "Ina'nis is known for playing the ukulele during streams and often sings while playing.",
+      trivia: "Yes, I just wanted an excuse to make you read as many of them as I could. No, I'm not sorry!",
       videoId: null,
       clue: {
         filename: "clue-5.pdf",
         thumbnail: "clue-5-thumb.jpg",
-        title: "Clue 5: Musical Talents"
+        title: "Clue 5"
       }
     },
     {
       id: 6,
-      question: "What is Ina'nis's favorite color?",
+      question: "\"Inanis\" in Latin translates to which of the following:",
       answers: [
-        "Purple",
-        "Blue",
-        "Pink",
-        "Green"
+        "Empty, 0",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]"
       ],
       correct: 0,
-      trivia: "Purple is strongly associated with Ina'nis, featuring prominently in her design and branding.",
+      trivia: "It appears in the medieval Latin poem O Fortuna, in the line \"Sors immanis et inanis,\" meaning \"monstrous and empty fate.\" It was famously set to music in Carl Orff's Carmina Burana, but this line is perhaps best known to video gamers for its appearance as a lyric in Final Fantasy VII's \"One-Winged Angel.\"",
       videoId: null,
       clue: {
         filename: "clue-6.pdf",
         thumbnail: "clue-6-thumb.jpg",
-        title: "Clue 6: Color Theory"
+        title: "Clue 6"
       }
     },
     {
       id: 7,
-      question: "What does Ina'nis call her fans?",
+      question: "[PLACEHOLDER - Question 7 not yet provided]",
       answers: [
-        "Takodachi",
-        "Inaniacs",
-        "Ninomates",
-        "Octofans"
+        "[PLACEHOLDER - correct answer]",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]",
+        "[PLACEHOLDER - provide 3 more answer options]"
       ],
       correct: 0,
-      trivia: "Ina'nis affectionately calls her fans 'Takodachi,' which means octopus friends in Japanese!",
+      trivia: "[PLACEHOLDER - trivia for question 7]",
       videoId: null,
       clue: {
         filename: "clue-7.pdf",
         thumbnail: "clue-7-thumb.jpg",
-        title: "Clue 7: The Community"
+        title: "Clue 7"
       }
     }
   ],

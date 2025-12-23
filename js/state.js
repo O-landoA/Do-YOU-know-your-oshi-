@@ -3,8 +3,8 @@
 import { config } from './config.js';
 import { debugLog } from './config.js';
 
-// Main state object
-const state = {
+// Main state object (exported for read-only access)
+export const state = {
     // Quiz Progress
     currentQuestion: 0,
     totalQuestions: 7,
