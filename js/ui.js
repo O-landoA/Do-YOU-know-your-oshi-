@@ -155,26 +155,61 @@ class UIManager {
         
         const progress = ((questionIndex + 1) / getTotalQuestions()) * 100;
         
-        const html = `
-            <div class="question-screen">
-                <div class="question-header">
-                    <div class="question-number">Question ${questionIndex + 1} of ${getTotalQuestions()}</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${progress}%"></div>
+        // Check if this is a number input question
+        if (question.questionType === 'number-input') {
+            const html = `
+                <div class="question-screen">
+                    <div class="question-header">
+                        <div class="question-number">Question ${questionIndex + 1} of ${getTotalQuestions()}</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progress}%"></div>
+                        </div>
+                    </div>
+                    <h2 class="question-text">${question.question}</h2>
+                    <div class="number-input-container">
+                        <input type="number" 
+                               class="number-input" 
+                               id="numberAnswer"
+                               placeholder="Enter number"
+                               min="0"
+                               max="999"
+                               inputmode="numeric"
+                               pattern="[0-9]*">
+                        <button class="button continue-button" onclick="window.uiManager.checkNumberAnswer()">
+                            Submit Answer
+                        </button>
                     </div>
                 </div>
-                <h2 class="question-text">${question.question}</h2>
-                <div class="answers-grid">
-                    ${question.answers.map((answer, index) => `
-                        <button class="button answer-button" onclick="window.uiManager.selectAnswer(${index})">
-                            <span class="answer-letter">${String.fromCharCode(65 + index)}</span>
-                            <span class="answer-text">${answer}</span>
-                        </button>
-                    `).join('')}
+            `;
+            this.renderContent(html);
+            
+            // Focus the input
+            setTimeout(() => {
+                document.getElementById('numberAnswer')?.focus();
+            }, 100);
+        } else {
+            // Regular multiple choice question
+            const html = `
+                <div class="question-screen">
+                    <div class="question-header">
+                        <div class="question-number">Question ${questionIndex + 1} of ${getTotalQuestions()}</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progress}%"></div>
+                        </div>
+                    </div>
+                    <h2 class="question-text">${question.question}</h2>
+                    <div class="answers-grid">
+                        ${question.answers.map((answer, index) => `
+                            <button class="button answer-button" onclick="window.uiManager.selectAnswer(${index})">
+                                <span class="answer-letter">${String.fromCharCode(65 + index)}</span>
+                                <span class="answer-text">${answer}</span>
+                            </button>
+                        `).join('')}
+                    </div>
                 </div>
-            </div>
-        `;
-        this.renderContent(html);
+            `;
+            this.renderContent(html);
+        }
     }
     
     // Show success screen
@@ -329,6 +364,57 @@ class UIManager {
                 buttons.forEach(btn => btn.disabled = false);
             }
         }, config.animations.bounceDuration);
+    }
+    
+    // Check number answer for question 7
+    checkNumberAnswer() {
+        if (state.animating) return;
+        
+        const input = document.getElementById('numberAnswer');
+        const userAnswer = input.value.trim();
+        const question = getQuestion(state.currentQuestion + 1);
+        
+        if (!userAnswer) {
+            input.classList.add('shake');
+            setTimeout(() => input.classList.remove('shake'), 500);
+            return;
+        }
+        
+        const isCorrect = userAnswer === question.correctAnswer;
+        
+        // Disable input
+        input.disabled = true;
+        
+        // Play sound effect
+        window.audioManager?.playSFX(isCorrect ? 'correct' : 'wrong');
+        
+        // Handle wrong answer
+        if (!isCorrect) {
+            this.showWrongAnimation();
+            input.classList.add('incorrect');
+            
+            // Re-enable after animation
+            setTimeout(() => {
+                input.disabled = false;
+                input.classList.remove('incorrect');
+                input.value = '';
+                input.focus();
+            }, config.animations.bounceDuration);
+        } else {
+            // Correct answer
+            input.classList.add('correct');
+            
+            setTimeout(() => {
+                updateState({ 
+                    currentQuestion: state.currentQuestion + 1,
+                    score: state.score + 1,
+                    animating: false,
+                    currentScreen: 'success'
+                });
+            }, config.animations.bounceDuration);
+        }
+        
+        updateState({ animating: true });
     }
     
     // Show wrong answer animation

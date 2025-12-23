@@ -13,9 +13,9 @@ export const quizContent = {
       question: "Arguably her first pun, the kanji for which number is featured in Ina's name?",
       answers: [
         "1",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]"
+        "0",
+        "2",
+        "100"
       ],
       correct: 0, // Index of correct answer (0-based)
       trivia: "Her surname, Ninomae, is simply written with the kanji 一, meaning \"one.\" This is a kanji pun; \"ni no mae\" means \"before two.\" It is an example of nanori, or idiosyncratic readings of kanji which only appear in names.",
@@ -31,9 +31,9 @@ export const quizContent = {
       question: "\"We Are Hype\" represents which of the 10 WAH's of the Tentacult?",
       answers: [
         "2",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]"
+        "4",
+        "6",
+        "8"
       ],
       correct: 0,
       trivia: "First suggested by channel member Rayett Ray in chat of the original Ender Lilies #2 stream, as \"we all HYPE.\"",
@@ -50,9 +50,9 @@ export const quizContent = {
       question: "The official 8th WAH (We Adore Her), part of the New Generation of WAHs, was canonised by Ina in which Pokémon Violet Stream?",
       answers: [
         "#8",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]"
+        "#1",
+        "#3",
+        "#6"
       ],
       correct: 0,
       trivia: "The 8th WAH (We Adore Her) was officially canonised during Pokémon Violet Stream #8.",
@@ -68,9 +68,9 @@ export const quizContent = {
       question: "How many episodes are in the \"TTRPG - Myth Breakers\" playlist?",
       answers: [
         "9",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]"
+        "5",
+        "7",
+        "11"
       ],
       correct: 0,
       trivia: "The TTRPG - Myth Breakers playlist contains 9 episodes of tabletop RPG adventures with the Myth members.",
@@ -86,9 +86,9 @@ export const quizContent = {
       question: "The number of Quotes on Ina's Virtual YouTube Wiki page divided by 4.125 is...",
       answers: [
         "8",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]"
+        "9.5",
+        "10",
+        "12"
       ],
       correct: 0,
       trivia: "Yes, I just wanted an excuse to make you read as many of them as I could. No, I'm not sorry!",
@@ -104,9 +104,9 @@ export const quizContent = {
       question: "\"Inanis\" in Latin translates to which of the following:",
       answers: [
         "Empty, 0",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]"
+        "Full, 1",
+        "Two flat objects, 2",
+        "Infinite, √-1"
       ],
       correct: 0,
       trivia: "It appears in the medieval Latin poem O Fortuna, in the line \"Sors immanis et inanis,\" meaning \"monstrous and empty fate.\" It was famously set to music in Carl Orff's Carmina Burana, but this line is perhaps best known to video gamers for its appearance as a lyric in Final Fantasy VII's \"One-Winged Angel.\"",
@@ -119,15 +119,12 @@ export const quizContent = {
     },
     {
       id: 7,
-      question: "[PLACEHOLDER - Question 7 not yet provided]",
-      answers: [
-        "[PLACEHOLDER - correct answer]",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]",
-        "[PLACEHOLDER - provide 3 more answer options]"
-      ],
-      correct: 0,
-      trivia: "[PLACEHOLDER - trivia for question 7]",
+      question: "According to the official website, how many <span class='glitch-text'>Humans</span> are there in Hololive Myth?",
+      questionType: "number-input", // Special question type for typed number entry
+      correctAnswer: "1", // The correct number answer
+      answers: [], // No multiple choice for this question
+      correct: null, // Not applicable for number input
+      trivia: "That's right - only one human in Hololive Myth!",
       videoId: null,
       clue: {
         filename: "clue-7.pdf",

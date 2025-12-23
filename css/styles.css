@@ -214,6 +214,14 @@ body {
     animation: fadeIn 0.4s ease;
 }
 
+/* Glitch text effect */
+.glitch-text {
+    position: relative;
+    display: inline-block;
+    color: var(--text-primary);
+    animation: glitch 2s infinite;
+}
+
 .question-header {
     margin-bottom: var(--space-xl);
 }
@@ -246,6 +254,52 @@ body {
     background-color: var(--accent);
     border-radius: var(--radius-full);
     transition: width 0.5s ease;
+}
+
+/* Number Input Container */
+.number-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    align-items: center;
+    margin-top: var(--space-xl);
+    animation: fadeInUp 0.5s ease 0.2s both;
+}
+
+.number-input {
+    width: 200px;
+    height: 80px;
+    font-size: var(--font-size-3xl);
+    text-align: center;
+    background-color: var(--bg-primary);
+    border: 3px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-weight: 600;
+    transition: all var(--transition-normal);
+}
+
+.number-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(197, 179, 230, 0.3);
+    outline: none;
+}
+
+.number-input.correct {
+    background-color: #4ade80;
+    border-color: #22c55e;
+    color: white;
+}
+
+.number-input.incorrect {
+    background-color: #f87171;
+    border-color: #ef4444;
+    color: white;
+}
+
+.number-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 /* Answer Buttons */
