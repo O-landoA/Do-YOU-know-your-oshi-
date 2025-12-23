@@ -12,12 +12,12 @@ export const quizContent = {
       id: 1,
       question: "Arguably her first pun, the kanji for which number is featured in Ina's name?",
       answers: [
-        "1",
         "0",
+        "1",
         "2",
         "100"
       ],
-      correct: 0, // Index of correct answer (0-based)
+      correct: 1, // Index of correct answer (0-based)
       trivia: "Her surname, Ninomae, is simply written with the kanji 一, meaning \"one.\" This is a kanji pun; \"ni no mae\" means \"before two.\" It is an example of nanori, or idiosyncratic readings of kanji which only appear in names.",
       videoId: null, // YouTube video ID or null for no video
       clue: {
@@ -49,12 +49,12 @@ export const quizContent = {
       id: 3,
       question: "The official 8th WAH (We Adore Her), part of the New Generation of WAHs, was canonised by Ina in which Pokémon Violet Stream?",
       answers: [
-        "#8",
         "#1",
         "#3",
-        "#6"
+        "#6",
+        "#8"
       ],
-      correct: 0,
+      correct: 3,
       trivia: "The 8th WAH (We Adore Her) was officially canonised during Pokémon Violet Stream #8.",
       videoId: "gQoGK9YDcEY", // Will show at 1h3m
       clue: {
@@ -67,12 +67,12 @@ export const quizContent = {
       id: 4,
       question: "How many episodes are in the \"TTRPG - Myth Breakers\" playlist?",
       answers: [
-        "9",
         "5",
         "7",
+        "9",
         "11"
       ],
-      correct: 0,
+      correct: 2,
       trivia: "The TTRPG - Myth Breakers playlist contains 9 episodes of tabletop RPG adventures with the Myth members.",
       playlistId: "PLQZecHYc3j2pIhdKqZwb7Jz73laAsLKYE", // Playlist instead of single video
       clue: {
@@ -105,8 +105,8 @@ export const quizContent = {
       answers: [
         "Empty, 0",
         "Full, 1",
-        "Two flat objects, 2",
-        "Infinite, √-1"
+        "Infinite, √-1",
+        "Two flat objects, 2"
       ],
       correct: 0,
       trivia: "It appears in the medieval Latin poem O Fortuna, in the line \"Sors immanis et inanis,\" meaning \"monstrous and empty fate.\" It was famously set to music in Carl Orff's Carmina Burana, but this line is perhaps best known to video gamers for its appearance as a lyric in Final Fantasy VII's \"One-Winged Angel.\"",
