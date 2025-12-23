@@ -138,7 +138,7 @@ class UIManager {
                 <div class="ina-image bounce-in">
                     <img src="${config.assets.images}ina-welcome.svg" alt="Ina'nis" width="200" height="200">
                 </div>
-                <h1>Do you know Your* Oshi?</h1>
+                <h1>Do you know Your Oshi?</h1>
                 <p>Test your knowledge about Ninomae Ina'nis!</p>
                 <button class="button continue-button" onclick="window.uiManager.startQuiz()">
                     Start Quiz
