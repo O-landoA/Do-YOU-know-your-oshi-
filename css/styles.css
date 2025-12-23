@@ -1,0 +1,536 @@
+/* Main Styles - Do you know Your* Oshi? Quiz */
+
+/* Base Layout */
+body {
+    background-color: var(--bg-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md);
+    overflow-x: hidden;
+}
+
+/* App Container */
+.app-container {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+}
+
+/* Central Card */
+.central-card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 8px 32px var(--shadow);
+    border: 2px solid var(--border);
+    padding: var(--space-xl);
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Loading Screen */
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    min-height: 400px;
+    color: var(--text-primary);
+}
+
+.loading-screen p {
+    font-size: var(--font-size-lg);
+    opacity: 0.7;
+}
+
+/* Gallery Button */
+.gallery-button {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    width: 56px;
+    height: 56px;
+    background-color: var(--accent);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px var(--shadow);
+    transition: all var(--transition-normal);
+    z-index: var(--z-dropdown);
+}
+
+.gallery-button:hover {
+    background-color: var(--accent-hover);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px var(--shadow);
+}
+
+.gallery-button:active {
+    transform: scale(0.95);
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-modal);
+    padding: var(--space-md);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-xl);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content.full-screen {
+    max-width: 95vw;
+    max-height: 95vh;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-header h2 {
+    color: var(--text-primary);
+    font-size: var(--font-size-2xl);
+}
+
+.close-button {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background-color: transparent;
+    color: var(--text-primary);
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-button:hover {
+    background-color: var(--border);
+    transform: scale(1.1);
+}
+
+.modal-body {
+    padding: var(--space-lg);
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-md);
+}
+
+.gallery-item {
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border: 2px solid transparent;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px var(--shadow);
+    border-color: var(--accent);
+}
+
+.gallery-item h3 {
+    color: var(--text-primary);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-sm);
+}
+
+.gallery-item p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+/* Clue Viewer */
+#clueViewer {
+    border: none;
+    border-radius: var(--radius-md);
+}
+
+/* Onboarding Screen */
+.onboarding-screen {
+    text-align: center;
+    animation: fadeInDown 0.6s ease;
+}
+
+.onboarding-screen h1 {
+    color: var(--text-primary);
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--space-lg);
+}
+
+.onboarding-screen p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.onboarding-screen .ina-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto var(--space-xl);
+}
+
+/* Question Screen */
+.question-screen {
+    animation: fadeIn 0.4s ease;
+}
+
+.question-header {
+    margin-bottom: var(--space-xl);
+}
+
+.question-number {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-sm);
+}
+
+.question-text {
+    color: var(--text-primary);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.progress-bar {
+    height: 4px;
+    background-color: var(--border);
+    border-radius: var(--radius-full);
+    margin: var(--space-lg) 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--accent);
+    border-radius: var(--radius-full);
+    transition: width 0.5s ease;
+}
+
+/* Answer Buttons */
+.answers-grid {
+    display: grid;
+    gap: var(--space-md);
+    animation: fadeInUp 0.5s ease 0.2s both;
+}
+
+.answer-button {
+    background-color: var(--bg-primary);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    text-align: left;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.answer-button:hover:not(:disabled) {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.answer-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.answer-button.correct {
+    background-color: #4ade80;
+    border-color: #22c55e;
+    color: white;
+}
+
+.answer-button.incorrect {
+    background-color: #f87171;
+    border-color: #ef4444;
+    color: white;
+}
+
+.answer-letter {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: var(--bg-card);
+    border-radius: var(--radius-full);
+    text-align: center;
+    line-height: 30px;
+    margin-right: var(--space-md);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.answer-text {
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+}
+
+/* Success Screen */
+.success-screen {
+    text-align: center;
+    animation: fadeIn 0.4s ease;
+}
+
+.success-title {
+    color: var(--text-primary);
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-md);
+}
+
+.trivia-text {
+    color: var(--text-secondary);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-lg);
+    line-height: 1.6;
+}
+
+.video-container {
+    margin: var(--space-lg) 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: #000;
+}
+
+.video-container iframe {
+    width: 100%;
+    min-height: 315px;
+}
+
+.clue-download {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background-color: var(--accent);
+    color: var(--text-primary);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-normal);
+    margin-top: var(--space-lg);
+}
+
+.clue-download:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.clue-thumbnail {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+}
+
+/* Continue Button */
+.continue-button {
+    background-color: var(--text-primary);
+    color: var(--bg-card);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-top: var(--space-lg);
+    transition: all var(--transition-normal);
+}
+
+.continue-button:hover {
+    background-color: var(--text-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+/* Password Screen */
+.password-screen {
+    text-align: center;
+    animation: fadeIn 0.4s ease;
+}
+
+.password-title {
+    color: var(--text-primary);
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-xl);
+}
+
+.password-boxes {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+}
+
+.password-box {
+    width: 50px;
+    height: 60px;
+    background-color: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-2xl);
+    text-align: center;
+    color: var(--text-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all var(--transition-normal);
+}
+
+.password-box:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(197, 179, 230, 0.3);
+}
+
+.password-box.filled {
+    background-color: var(--accent);
+    color: var(--bg-card);
+}
+
+/* Completion Screen */
+.completion-screen {
+    text-align: center;
+    animation: fadeIn 0.4s ease;
+}
+
+.completion-title {
+    color: var(--text-primary);
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--space-lg);
+}
+
+.completion-message {
+    color: var(--text-secondary);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-xl);
+    line-height: 1.6;
+}
+
+.clues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.clue-item {
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    text-align: center;
+    transition: all var(--transition-normal);
+}
+
+.clue-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.clue-thumbnail-small {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-sm);
+    margin: 0 auto var(--space-sm);
+    object-fit: cover;
+}
+
+.clue-label {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    body {
+        padding: var(--space-sm);
+    }
+    
+    .central-card {
+        padding: var(--space-lg);
+        min-height: 350px;
+    }
+    
+    .gallery-button {
+        bottom: var(--space-md);
+        right: var(--space-md);
+        width: 48px;
+        height: 48px;
+    }
+    
+    .modal-content {
+        max-width: 100%;
+    }
+    
+    .onboarding-screen h1 {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .question-text {
+        font-size: var(--font-size-lg);
+    }
+    
+    .answer-button {
+        padding: var(--space-md);
+    }
+    
+    .password-boxes {
+        gap: var(--space-xs);
+    }
+    
+    .password-box {
+        width: 40px;
+        height: 50px;
+        font-size: var(--font-size-xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .clues-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

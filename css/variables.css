@@ -1,0 +1,64 @@
+/* CSS Custom Properties - Color Palette & Design Tokens */
+
+:root {
+    /* Colors */
+    --bg-primary: #E6D7FF; /* Soft Lilac background */
+    --bg-card: #FFFFFF; /* White card background */
+    --text-primary: #4b3b73; /* Desaturated Purple text */
+    --text-secondary: #6B5B95; /* Lighter purple for secondary text */
+    --accent: #C5B3E6; /* Light Purple accent */
+    --accent-hover: #B8A5D8; /* Darker accent for hover states */
+    --border: rgba(75, 59, 115, 0.2); /* Semi-transparent purple borders */
+    --shadow: rgba(75, 59, 115, 0.1); /* Light purple shadows */
+    --glitch-magenta: #ff00ff;
+    --glitch-cyan: #00ffff;
+    
+    /* Spacing */
+    --space-xs: 0.25rem; /* 4px */
+    --space-sm: 0.5rem; /* 8px */
+    --space-md: 1rem; /* 16px */
+    --space-lg: 1.5rem; /* 24px */
+    --space-xl: 2rem; /* 32px */
+    --space-xxl: 3rem; /* 48px */
+    
+    /* Typography */
+    --font-size-xs: 0.75rem; /* 12px */
+    --font-size-sm: 0.875rem; /* 14px */
+    --font-size-base: 1rem; /* 16px */
+    --font-size-lg: 1.125rem; /* 18px */
+    --font-size-xl: 1.25rem; /* 20px */
+    --font-size-2xl: 1.5rem; /* 24px */
+    --font-size-3xl: 1.875rem; /* 30px */
+    --font-size-4xl: 2.25rem; /* 36px */
+    
+    /* Border Radius */
+    --radius-sm: 0.5rem; /* 8px */
+    --radius-md: 0.75rem; /* 12px */
+    --radius-lg: 1rem; /* 16px */
+    --radius-xl: 1.5rem; /* 24px */
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.2s ease;
+    --transition-slow: 0.3s ease;
+    
+    /* Z-index layers */
+    --z-dropdown: 1000;
+    --z-modal: 1050;
+    --z-toast: 1100;
+    
+    /* Breakpoints for responsive design */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-card: #f8f6ff;
+        --text-primary: #3d2f5f;
+    }
+}

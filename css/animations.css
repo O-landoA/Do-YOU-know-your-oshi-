@@ -1,0 +1,240 @@
+/* Animations - Duolingo-style interactions and DDLC bounce effects */
+
+/* Universal button pulse animation */
+@keyframes buttonPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+/* Success animations */
+@keyframes successPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes successExpand {
+    0% { 
+        transform: scale(1);
+        border-radius: var(--radius-md);
+    }
+    50% {
+        transform: scale(1.05);
+        border-radius: var(--radius-lg);
+    }
+    100% { 
+        transform: scale(1);
+        border-radius: var(--radius-lg);
+    }
+}
+
+/* Error animations */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* DDLC-style bounce in animation */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(100px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05) translateY(-10px);
+    }
+    70% {
+        transform: scale(0.9) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Bounce out animation */
+@keyframes bounceOut {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    30% {
+        transform: scale(1.1) translateY(-10px);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3) translateY(100px);
+    }
+}
+
+/* Glitch effect for password screen */
+@keyframes glitch {
+    0%, 100% { 
+        text-shadow: 2px 2px 0 var(--glitch-magenta), -2px -2px 0 var(--glitch-cyan);
+        transform: translate(0);
+    }
+    20% { 
+        text-shadow: -2px 2px 0 var(--glitch-magenta), 2px -2px 0 var(--glitch-cyan);
+        transform: translate(-2px, 2px);
+    }
+    40% { 
+        text-shadow: 2px -2px 0 var(--glitch-magenta), -2px 2px 0 var(--glitch-cyan);
+        transform: translate(-2px, -2px);
+    }
+    60% { 
+        text-shadow: -2px -2px 0 var(--glitch-magenta), 2px 2px 0 var(--glitch-cyan);
+        transform: translate(2px, -2px);
+    }
+    80% { 
+        text-shadow: 2px 2px 0 var(--glitch-magenta), -2px -2px 0 var(--glitch-cyan);
+        transform: translate(2px, 2px);
+    }
+}
+
+/* Glitch effect for background */
+@keyframes glitchBg {
+    0%, 100% { 
+        background-position: 0 0;
+        filter: hue-rotate(0deg);
+    }
+    20% { 
+        background-position: -5px 5px;
+        filter: hue-rotate(90deg);
+    }
+    40% { 
+        background-position: -5px -5px;
+        filter: hue-rotate(180deg);
+    }
+    60% { 
+        background-position: 5px -5px;
+        filter: hue-rotate(270deg);
+    }
+    80% { 
+        background-position: 5px 5px;
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Fade in from top */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade in from bottom */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Loading spinner */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Apply animations to elements */
+.button {
+    animation: buttonPulse 0.3s ease;
+}
+
+.button:active {
+    animation: buttonPulse 0.3s ease;
+}
+
+.answer-button.correct {
+    animation: buttonPulse 0.3s ease, successPulse 0.6s ease 0.3s;
+}
+
+.answer-button.incorrect {
+    animation: buttonPulse 0.3s ease, shake 0.5s ease 0.3s;
+}
+
+.bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.bounce-out {
+    animation: bounceOut 0.5s ease-in forwards;
+}
+
+.glitch-active {
+    animation: glitch 2s infinite;
+}
+
+.glitch-active-bg {
+    animation: glitchBg 3s infinite;
+}
+
+.typing-active {
+    animation: none !important;
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease;
+}
+
+.fade-in-down {
+    animation: fadeInDown 0.4s ease;
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.4s ease;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.4s ease;
+}
+
+/* Loading spinner styles */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Pause animations for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

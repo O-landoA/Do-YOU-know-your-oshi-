@@ -1,5 +1,48 @@
 # Deployment Guide - Do you know Your* Oshi? Quiz
 
+## How to Run the Quiz Locally
+
+### For the Target Player:
+
+1. **Download the project:**
+   - Go to the GitHub link
+   - Click the green "Code" button
+   - Select "Download ZIP"
+   - Extract the ZIP file to a folder
+
+2. **Start the local server:**
+   - Open Terminal (Mac) or Command Prompt/PowerShell (Windows)
+   - Navigate to the extracted folder:
+     ```bash
+     cd path/to/Do-YOU-know-your-oshi-
+     ```
+   - Run the server command:
+     ```bash
+     # For Mac/Linux (Python 3):
+     python3 -m http.server 8000
+     
+     # For Windows (if Python is installed):
+     python -m http.server 8000
+     
+     # If Python is not installed, download from python.org
+     ```
+
+3. **Access the quiz:**
+   - Open your web browser
+   - Go to: `http://localhost:8000`
+   - The quiz should load with the purple theme
+
+4. **To stop the server:**
+   - Go back to the terminal
+   - Press Ctrl+C
+
+### Alternative: Using Node.js
+If you have Node.js installed:
+```bash
+npx serve .
+# Then visit http://localhost:3000
+```
+
 ## Quick Deployment Steps
 
 ### 1. GitHub Pages (Recommended)
@@ -18,7 +61,7 @@ git push -u origin main
 # Site will be available at https://yourusername.github.io/oshi-quiz/
 ```
 
-### 2. Netlify (Alternative)
+### 2. Netlify (Alternative) 
 1. Push code to GitHub
 2. Sign up at netlify.com
 3. Click "New site from Git"

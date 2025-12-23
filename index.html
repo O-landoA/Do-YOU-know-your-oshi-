@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do you know Your* Oshi?</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="assets/images/ina-welcome.svg" as="image">
+</head>
+<body>
+    <!-- Main Application Container -->
+    <div class="app-container" id="app">
+        <!-- Central Card - All content transitions here -->
+        <main class="central-card" id="mainCard">
+            <!-- Content will be dynamically loaded here by JavaScript -->
+            <div class="loading-screen">
+                <div class="loading-spinner"></div>
+                <p>Loading...</p>
+            </div>
+        </main>
+        
+        <!-- Gallery Button - Always visible -->
+        <button class="gallery-button" id="galleryBtn" aria-label="Open Gallery">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+        </button>
+        
+        <!-- Gallery Modal - Hidden by default -->
+        <div class="modal" id="galleryModal" role="dialog" aria-modal="true" aria-labelledby="galleryTitle">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="galleryTitle">Gallery</h2>
+                    <button class="close-button" id="closeGallery" aria-label="Close Gallery">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="gallery-grid" id="galleryGrid">
+                        <!-- Gallery items will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Full-screen Clue Viewer - Hidden by default -->
+        <div class="modal" id="clueModal" role="dialog" aria-modal="true" aria-labelledby="clueTitle">
+            <div class="modal-content full-screen">
+                <div class="modal-header">
+                    <h2 id="clueTitle">Clue</h2>
+                    <button class="close-button" id="closeClue" aria-label="Close Clue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="clueViewer" src="" width="100%" height="100%"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript Modules -->
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/quiz-content.js"></script>
+    <script type="module" src="js/state.js"></script>
+    <script type="module" src="js/audio.js"></script>
+    <script type="module" src="js/video.js"></script>
+    <script type="module" src="js/ui.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
