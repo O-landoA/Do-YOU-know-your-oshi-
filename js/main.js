@@ -75,8 +75,8 @@ class QuizApp {
         // Determine initial screen
         const savedState = loadState();
         
-        if (savedState.currentQuestion === 0) {
-            // First time playing
+        if (!savedState || savedState.currentQuestion === 0) {
+            // First time playing or no saved state
             this.modules.ui.showOnboardingScreen();
         } else if (savedState.isComplete) {
             // Already completed
