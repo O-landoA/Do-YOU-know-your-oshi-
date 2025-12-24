@@ -224,6 +224,8 @@ class UIManager {
         const question = getQuestion(questionIndex + 1);
         if (!question) return;
         
+        const isQuestion7 = questionIndex === 6; // Question 7 is index 6
+        
         const html = `
             <div class="success-screen">
                 <h2 class="success-title">Correct!</h2>
@@ -243,13 +245,13 @@ class UIManager {
                         <p class="download-reminder" style="margin-top: 1rem; color: var(--accent-color);">
                             Don't forget to download your clue!
                         </p>
-                        <p class="download-subtext" style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">
+                        <p class="download-subtext" style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-secondary); font-style: italic;">
                             You might need it
                         </p>
                     ` : ''}
                 </div>
-                <button class="button continue-button" onclick="window.uiManager.nextQuestion()">
-                    Next Question
+                <button class="button continue-button" onclick="window.uiManager.${isQuestion7 ? 'showQuestion7Reward' : 'nextQuestion'}()">
+                    ${isQuestion7 ? 'Continue' : 'Next Question'}
                 </button>
             </div>
         `;
