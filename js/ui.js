@@ -710,5 +710,5 @@ export const uiManager = new UIManager();
 // Make it globally available for inline event handlers
 window.uiManager = uiManager;
 window.stateManager = { 
-    markClueDownloaded: (id) => import('./state.js').then(m => m.markClueDownloaded(id))
+    markClueDownloaded: (id) => import('./state.js').then(m => m.markClueDownloaded(id)),
 };
