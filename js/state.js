@@ -28,7 +28,6 @@ export const state = {
     videoPlaying: false,
     currentPasswordBox: 0,
     glitchActive: true,
-    galleryOpen: false,
     currentScreen: 'loading', // loading, onboarding, question, success, password, completion
     
     // Session Data

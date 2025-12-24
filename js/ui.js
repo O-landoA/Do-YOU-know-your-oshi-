@@ -30,13 +30,6 @@ class UIManager {
     cacheElements() {
         this.elements = {
             mainCard: document.getElementById('mainCard'),
-            galleryBtn: document.getElementById('galleryBtn'),
-            galleryModal: document.getElementById('galleryModal'),
-            closeGallery: document.getElementById('closeGallery'),
-            galleryGrid: document.getElementById('galleryGrid'),
-            clueModal: document.getElementById('clueModal'),
-            closeClue: document.getElementById('closeClue'),
-            clueViewer: document.getElementById('clueViewer'),
             cornerSticker: document.getElementById('cornerSticker')
         };
     }
@@ -45,42 +38,6 @@ class UIManager {
     setupEventListeners() {
         // Set up corner sticker interaction
         this.setupCornerSticker();
-        
-        // Gallery button
-        this.elements.galleryBtn.addEventListener('click', () => {
-            this.showGallery();
-        });
-        
-        // Close gallery
-        this.elements.closeGallery.addEventListener('click', () => {
-            this.hideGallery();
-        });
-        
-        // Close clue viewer
-        this.elements.closeClue.addEventListener('click', () => {
-            this.hideClue();
-        });
-        
-        // Close modals on background click
-        this.elements.galleryModal.addEventListener('click', (e) => {
-            if (e.target === this.elements.galleryModal) {
-                this.hideGallery();
-            }
-        });
-        
-        this.elements.clueModal.addEventListener('click', (e) => {
-            if (e.target === this.elements.clueModal) {
-                this.hideClue();
-            }
-        });
-        
-        // Escape key to close modals
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                this.hideGallery();
-                this.hideClue();
-            }
-        });
     }
     
     // Handle state changes
@@ -618,56 +575,7 @@ class UIManager {
         this.focusPasswordBox(0);
     }
     
-    // Show gallery modal
-    showGallery() {
-        updateState({ galleryOpen: true });
-        this.elements.galleryModal.classList.add('active');
-        this.populateGallery();
-    }
-    
-    // Hide gallery modal
-    hideGallery() {
-        updateState({ galleryOpen: false });
-        this.elements.galleryModal.classList.remove('active');
-    }
-    
-    // Populate gallery with questions and clues
-    populateGallery() {
-        const html = state.unlockedClues.map(clue => {
-            const question = getQuestion(clue.id);
-            return `
-                <div class="gallery-item" onclick="window.uiManager.showClue('${clue.filename}', '${question.clue.title}')">
-                    <h3>Question ${clue.id}</h3>
-                    <p><strong>Q:</strong> ${question.question}</p>
-                    <p><strong>A:</strong> ${question.answers[question.correct]}</p>
-                    <p><em>Click to view clue</em></p>
-                </div>
-            `;
-        }).join('');
         
-        this.elements.galleryGrid.innerHTML = html;
-    }
-    
-    // Show clue in modal
-    showClue(filename, title) {
-        document.getElementById('clueTitle').textContent = title;
-        this.elements.clueViewer.src = `${config.assets.clues}${filename}`;
-        this.elements.clueModal.classList.add('active');
-    }
-    
-    // Show clue modal (alias for showClue with full path)
-    showClueModal(fullPath, title) {
-        document.getElementById('clueTitle').textContent = title;
-        this.elements.clueViewer.src = fullPath;
-        this.elements.clueModal.classList.add('active');
-    }
-    
-    // Hide clue modal
-    hideClue() {
-        this.elements.clueModal.classList.remove('active');
-        this.elements.clueViewer.src = '';
-    }
-    
     // Track clue download
     trackClueDownload(clueId) {
         window.stateManager?.markClueDownloaded(clueId);
@@ -676,6 +584,8 @@ class UIManager {
     // Start quiz
     startQuiz() {
         updateState({ currentScreen: 'question' });
+        // Start BGM after user interaction
+        window.audioManager?.playBGM();
         window.audioManager?.playRandomQuestionTrack();
     }
     
