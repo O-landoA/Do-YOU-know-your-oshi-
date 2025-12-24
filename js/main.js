@@ -113,6 +113,11 @@ class QuizApp {
         // Determine initial screen
         const savedState = loadState();
         
+        // Clear any stale screen state to prevent success screen showing first
+        if (savedState) {
+            updateState({ currentScreen: 'loading' });
+        }
+        
         if (!savedState || savedState.currentQuestion === 0) {
             // First time playing or no saved state
             this.modules.ui.showOnboardingScreen();

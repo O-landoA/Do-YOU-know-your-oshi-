@@ -633,9 +633,19 @@ class UIManager {
     startQuiz() {
         updateState({ currentScreen: 'question' });
         // Ensure BGM plays on first user interaction
-        window.audioManager?.playBGM().catch(e => {
-            debugLog('BGM play failed on start quiz:', e);
-        });
+        if (window.audioManager) {
+            window.audioManager.playBGM().then(() => {
+                debugLog('BGM playing successfully');
+            }).catch(e => {
+                debugLog('BGM play failed on start quiz:', e);
+                // Try again with user interaction
+                setTimeout(() => {
+                    window.audioManager.playBGM().catch(e2 => {
+                        debugLog('BGM retry failed:', e2);
+                    });
+                }, 100);
+            });
+        }
         window.audioManager?.playRandomQuestionTrack();
     };
     
@@ -710,5 +720,5 @@ export const uiManager = new UIManager();
 // Make it globally available for inline event handlers
 window.uiManager = uiManager;
 window.stateManager = { 
-    markClueDownloaded: (id) => import('./state.js').then(m => m.markClueDownloaded(id)),
+    markClueDownloaded: (id) => import('./state.js').then(m => m.markClueDownloaded(id))
 };
