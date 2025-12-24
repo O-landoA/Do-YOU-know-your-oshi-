@@ -288,24 +288,24 @@ class UIManager {
     showPasswordScreen() {
         const html = `
             <div class="password-screen ${state.glitchActive ? 'glitch-active-bg' : ''}">
-                <h2 class="password-title ${state.glitchActive ? 'glitch-active' : ''}" style="transform: translateX(200px) rotate(0deg); margin-left: -150px; overflow: visible;">Enter the Secret Code</h2>
-                <div class="password-boxes" style="transform: translateX(-100px) rotate(0deg); display: flex; gap: 8px; justify-content: center;">
+                <h2 class="password-title ${state.glitchActive ? 'glitch-active' : ''}" style="transform: translateX(100px);">Enter the Secret Code</h2>
+                <div class="password-boxes" style="transform: translateX(0); display: flex; gap: 8px; justify-content: center;">
                     ${Array.from({ length: 8 }, (_, i) => `
                         <input type="text" 
                                class="password-box ${state.password[i] ? 'filled' : ''}" 
                                maxlength="1" 
                                value="${state.password[i]}"
                                data-index="${i}"
-                               style="${i === 4 ? 'transform: translateX(-50px) rotate(0deg) scaleX(-1);' : 'transform: translateX(0) rotate(0deg);'}"
+                               style="${i === 4 ? 'transform: translateX(0) scaleX(-1);' : 'transform: translateX(0);'}"
                                oninput="window.uiManager.handlePasswordInput(${i}, this.value)"
                                onclick="window.uiManager.focusPasswordBox(${i})"
                                onkeydown="window.uiManager.handlePasswordKeydown(${i}, event)">
                     `).join('')}
                 </div>
-                <button class="button continue-button" onclick="window.uiManager.checkPassword()" style="transform: translateX(-200px) rotate(0deg); margin-right: -250px;">
+                <button class="button continue-button" onclick="window.uiManager.checkPassword()" style="transform: translateX(0);">
                     Submit
                 </button>
-                <button class="button" onclick="window.uiManager.clearPassword()" style="margin-top: 1rem; transform: translateX(150px) rotate(0deg); margin-left: -100px;">
+                <button class="button" onclick="window.uiManager.clearPassword()" style="margin-top: 1rem; transform: translateX(0);">
                     Clear
                 </button>
             </div>
@@ -366,20 +366,20 @@ class UIManager {
         
         const html = `
             <div class="reward-screen glitch-active">
-                <h2 class="reward-title glitch-active" style="transform: translateX(150px) rotate(0deg); margin-left: -100px; overflow: visible;">Question 7 Complete!</h2>
-                <p class="reward-text" style="transform: translateX(-80px) rotate(0deg); text-align: right; margin-right: -150px;">You've proven yourself worthy...</p>
-                <div class="clue-display" style="transform: translateX(50px) rotate(0deg); margin-left: 100px; overflow: visible;">
-                    <h3 style="transform: translateX(-100px) rotate(0deg); text-align: left; margin-left: -150px;">Final Clue Unlocked!</h3>
+                <h2 class="reward-title glitch-active" style="transform: translateX(50px);">Question 7 Complete!</h2>
+                <p class="reward-text" style="transform: translateX(0);">You've proven yourself worthy...</p>
+                <div class="clue-display" style="transform: translateX(0);">
+                    <h3 style="transform: translateX(0);">Final Clue Unlocked!</h3>
                     <img src="${config.assets.clues}${question.clue.filename}" 
                          alt="${question.clue.title}" 
                          class="clue-image"
-                         style="transform: translateX(-200px) rotate(0deg) scaleX(-1); margin-left: -200px;"
+                         style="transform: translateX(0) scaleX(-1);"
                          onclick="window.uiManager.showClueModal('${config.assets.clues}${question.clue.filename}', '${question.clue.title}')">
-                    <p class="download-reminder" style="margin-top: 1rem; color: var(--accent-color); transform: translateX(100px) rotate(0deg); margin-left: 150px;">
+                    <p class="download-reminder" style="margin-top: 1rem; color: var(--accent-color); transform: translateX(0);">
                         Procreate might offer a new perspective on those clues, perchance...
                     </p>
                 </div>
-                <button class="button continue-button glitch-active" style="transform: translateX(-150px) rotate(0deg); margin-right: -200px;" onclick="window.uiManager.showFinalPuzzle()">
+                <button class="button continue-button glitch-active" style="transform: translateX(0);" onclick="window.uiManager.showFinalPuzzle()">
                     Continue to Final Puzzle
                 </button>
             </div>
