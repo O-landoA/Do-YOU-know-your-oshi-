@@ -134,8 +134,8 @@ export const quizContent = {
       trivia: "<em>\"It claims there's only ONE HUMAN in HoloMyth. Who is it? It's me! Ame... Ame is british\" - Ninomae Ina'nis, circa 2019</em>",
       videoId: null,
       clue: {
-        filename: "clue-7.png",
-        thumbnail: "clue-7.png",
+        filename: "final-clue.png",
+        thumbnail: "final-clue.png",
         title: "Clue 7"
       }
     }

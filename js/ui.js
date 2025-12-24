@@ -789,6 +789,20 @@ class UIManager {
         document.getElementById('clueTitle').textContent = title;
         this.elements.clueViewer.src = fullPath;
         this.elements.clueModal.classList.add('active');
+        
+        // Set up download button
+        const downloadBtn = document.getElementById('clueDownload');
+        if (downloadBtn) {
+            downloadBtn.href = fullPath;
+            downloadBtn.onclick = (e) => {
+                // Extract clue ID from filename
+                const clueMatch = fullPath.match(/clue-(\d+)\.png/);
+                if (clueMatch) {
+                    const clueId = parseInt(clueMatch[1]);
+                    this.trackClueDownload(clueId);
+                }
+            };
+        }
     };
     
     // Hide clue modal
@@ -824,17 +838,19 @@ class UIManager {
     
     // Next question
     nextQuestion() {
-        // Increment currentQuestion when moving to next screen
-        updateState({ 
-            currentQuestion: state.currentQuestion + 1
-        });
+        // Check current value before incrementing
+        const nextQuestionIndex = state.currentQuestion + 1;
         
-        if (state.currentQuestion >= getTotalQuestions()) {
+        if (nextQuestionIndex >= getTotalQuestions()) {
             updateState({ currentScreen: 'password' });
-        } else if (state.currentQuestion === 7) { // After completing question 7
+        } else if (state.currentQuestion === 6) { // Currently on question 7 (index 6)
             updateState({ currentScreen: 'question7reward' });
         } else {
-            updateState({ currentScreen: 'question' });
+            // Increment currentQuestion when moving to next screen
+            updateState({ 
+                currentQuestion: nextQuestionIndex,
+                currentScreen: 'question'
+            });
         }
     };
     
