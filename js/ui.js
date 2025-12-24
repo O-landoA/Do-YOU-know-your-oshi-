@@ -30,6 +30,9 @@ class UIManager {
     cacheElements() {
         this.elements = {
             mainCard: document.getElementById('mainCard'),
+            clueModal: document.getElementById('clueModal'),
+            closeClue: document.getElementById('closeClue'),
+            clueViewer: document.getElementById('clueViewer'),
             cornerSticker: document.getElementById('cornerSticker')
         };
     }
@@ -38,6 +41,25 @@ class UIManager {
     setupEventListeners() {
         // Set up corner sticker interaction
         this.setupCornerSticker();
+        
+        // Close clue modal
+        this.elements.closeClue.addEventListener('click', () => {
+            this.hideClue();
+        });
+        
+        // Close modal on background click
+        this.elements.clueModal.addEventListener('click', (e) => {
+            if (e.target === this.elements.clueModal) {
+                this.hideClue();
+            }
+        });
+        
+        // Escape key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.hideClue();
+            }
+        });
     }
     
     // Handle state changes
@@ -575,6 +597,18 @@ class UIManager {
         this.focusPasswordBox(0);
     }
     
+    // Show clue modal (alias for showClue with full path)
+    showClueModal(fullPath, title) {
+        document.getElementById('clueTitle').textContent = title;
+        this.elements.clueViewer.src = fullPath;
+        this.elements.clueModal.classList.add('active');
+    }
+    
+    // Hide clue modal
+    hideClue() {
+        this.elements.clueModal.classList.remove('active');
+        this.elements.clueViewer.src = '';
+    }
         
     // Track clue download
     trackClueDownload(clueId) {
@@ -584,8 +618,6 @@ class UIManager {
     // Start quiz
     startQuiz() {
         updateState({ currentScreen: 'question' });
-        // Start BGM after user interaction
-        window.audioManager?.playBGM();
         window.audioManager?.playRandomQuestionTrack();
     }
     

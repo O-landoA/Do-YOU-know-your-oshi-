@@ -75,6 +75,24 @@ class QuizApp {
         // Start session tracking
         startSession();
         
+        // Attempt to play BGM on page load (will be blocked by browsers until user interaction)
+        let bgmStarted = false;
+        const startBGM = () => {
+            if (!bgmStarted) {
+                bgmStarted = true;
+                this.modules.audio.playBGM();
+                document.removeEventListener('click', startBGM);
+                document.removeEventListener('keydown', startBGM);
+            }
+        };
+        
+        this.modules.audio.playBGM().catch(() => {
+            // BGM blocked by browser, will play on first user interaction
+            debugLog('BGM autoplay blocked, will play on first interaction');
+            document.addEventListener('click', startBGM);
+            document.addEventListener('keydown', startBGM);
+        });
+        
         // Determine initial screen
         const savedState = loadState();
         
