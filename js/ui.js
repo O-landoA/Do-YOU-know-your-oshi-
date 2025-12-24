@@ -222,11 +222,13 @@ class UIManager {
         
         const html = `
             <div class="success-screen">
-                <div class="success-tako-corner">
-                    <img src="${config.assets.images}hololive-vtuber.gif" alt="Tako">
-                </div>
                 <h2 class="success-title">Correct!</h2>
                 <p class="trivia-text">${question.trivia}</p>
+                ${question.videoId ? `
+                    <div class="video-container">
+                        <div id="video-player-${questionIndex}"></div>
+                    </div>
+                ` : ''}
                 <div class="clue-section">
                     <h3>Clue Unlocked!</h3>
                     <img src="${config.assets.clues}${question.clue.filename}" 
@@ -427,8 +429,13 @@ class UIManager {
         // Pick a random success sticker
         const randomSticker = config.successStickers[Math.floor(Math.random() * config.successStickers.length)];
         
-        // Calculate random horizontal position (20% to 80% of screen width to avoid clipping)
-        const randomLeft = 20 + Math.random() * 60; // Random between 20% and 80%
+        // Calculate random horizontal position (avoid center 10%: 0-45% or 55-100%)
+        let randomLeft;
+        if (Math.random() < 0.5) {
+            randomLeft = Math.random() * 45; // 0% to 45%
+        } else {
+            randomLeft = 55 + Math.random() * 45; // 55% to 100%
+        }
         
         const successImg = document.createElement('div');
         successImg.className = 'success-sticker ddlc-bounce-in';
