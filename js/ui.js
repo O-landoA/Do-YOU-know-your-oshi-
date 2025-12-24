@@ -122,7 +122,7 @@ class UIManager {
         const html = `
             <div class="loading-screen">
                 <div class="loading-spinner"></div>
-                <p>Loading your quiz...</p>
+                <p>Plotting world domINAtion...</p>
             </div>
         `;
         this.renderContent(html);
