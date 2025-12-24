@@ -35,7 +35,8 @@ class UIManager {
             clueTitle: document.getElementById('clueTitle'),
             closeClue: document.getElementById('closeClue'),
             clueDownload: document.getElementById('clueDownload'),
-            leftMascot: document.querySelector('.left-mascot img')
+            leftMascot: document.querySelector('.left-mascot'),
+            mascotImage: document.querySelector('.left-mascot img')
         };
     }
     
@@ -820,8 +821,8 @@ class UIManager {
         
     // Update mascot image
     updateMascot(imageName) {
-        if (this.elements.leftMascot) {
-            this.elements.leftMascot.src = `${config.assets.images}${imageName}.png`;
+        if (this.elements.mascotImage) {
+            this.elements.mascotImage.src = `${config.assets.images}${imageName}.png`;
         }
     }
     
@@ -830,7 +831,6 @@ class UIManager {
         if (this.elements.leftMascot) {
             this.elements.leftMascot.classList.add('mascot-restore');
             setTimeout(() => {
-                this.elements.leftMascot.classList.add('animation-complete');
                 this.elements.leftMascot.classList.remove('mascot-restore');
             }, 1000);
         }

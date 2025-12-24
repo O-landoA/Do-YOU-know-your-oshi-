@@ -97,25 +97,13 @@ body {
 @keyframes mascotBounceFade {
     0% {
         opacity: 0;
-        transform: scale(0.8) translateY(-20px);
     }
     50% {
-        opacity: 0.8;
-        transform: scale(1.1) translateY(-10px);
+        opacity: 1;
     }
     100% {
         opacity: 0.8;
-        transform: scale(1) translateY(0);
     }
-}
-
-/* Ensure mascot stays in position after animation */
-.left-mascot.mascot-restore {
-    animation: mascotBounceFade 1s ease-out forwards;
-}
-
-.left-mascot.mascot-restore.animation-complete {
-    transform: none;
 }
 
 /* Corner Sticker - Bottom Right GIF */
