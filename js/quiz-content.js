@@ -25,7 +25,7 @@ export const quizContent = {
         "100"
       ],
       correct: 1, // Index of correct answer (0-based)
-      trivia: "<em>Her surname, Ninomae, is simply written with the kanji 一, meaning \"one.\" This is a kanji pun; \"ni no mae\" means \"before two.\" It is an example of nanori, or idiosyncratic readings of kanji which only appear in names.</em>",
+      trivia: "<em>Her surname, Ninomae, is simply written with the kanji 一. This is a kanji pun; \"ni no mae\" means \"before two.\" It is an example of nanori, or idiosyncratic readings of kanji which only appear in names.</em>",
       videoId: null, // YouTube video ID or null for no video
       clue: {
         filename: "clue-1.png",
