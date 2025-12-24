@@ -80,7 +80,7 @@ export const quizContent = {
         "11"
       ],
       correct: 2,
-      trivia: "<em>The TTRPG - Myth Breakers playlist contains 9 episodes of tabletop RPG adventures with the Myth members.</em><br><a href='https://www.youtube.com/playlist?list=PLQZecHYc3j2pIhdKqZwb7Jz73laAsLKYE' target='_blank' style='color: var(--accent-color);'>Watch full playlist</a>",
+      trivia: "<em>\"Banger streams, you might not watch it but it came out during the era when I was really into DnD and actually inspired me to DM for Gates and Rupert while travelling with them!\"</em><br><a href='https://www.youtube.com/playlist?list=PLQZecHYc3j2pIhdKqZwb7Jz73laAsLKYE' target='_blank' style='color: var(--accent-color);'>Watch full playlist</a>",
       playlistId: "PLQZecHYc3j2pIhdKqZwb7Jz73laAsLKYE", // Playlist instead of single video
       clue: {
         filename: "clue-4.png",
@@ -131,7 +131,7 @@ export const quizContent = {
       correctAnswer: "1", // The correct number answer
       answers: [], // No multiple choice for this question
       correct: null, // Not applicable for number input
-      trivia: "<em>That's right - only one human in Hololive Myth!</em>",
+      trivia: "<em>\"It claims there's only ONE HUMAN in HoloMyth. Who is it? It's me! Ame... Ame is british\" - Ninomae Ina'nis, circa 2019</em>",
       videoId: null,
       clue: {
         filename: "clue-7.png",

@@ -222,6 +222,12 @@ class AudioManager {
         
         const sfx = new Audio(`${config.assets.audio}${filename}`);
         sfx.volume = config.audio.sfxVolume;
+        
+        // Start wrong SFX at 0.4 seconds to skip silence
+        if (type === 'wrong') {
+            sfx.currentTime = 0.4;
+        }
+        
         sfx.play().catch(e => {
             debugLog('SFX play failed:', e);
         });
