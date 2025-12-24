@@ -31,9 +31,11 @@ class UIManager {
         this.elements = {
             mainCard: document.getElementById('mainCard'),
             clueModal: document.getElementById('clueModal'),
+            clueViewer: document.getElementById('clueViewer'),
+            clueTitle: document.getElementById('clueTitle'),
             closeClue: document.getElementById('closeClue'),
-            clueViewer: document.getElementById('clueViewer')
-            // cornerSticker removed - no longer exists
+            clueDownload: document.getElementById('clueDownload'),
+            leftMascot: document.querySelector('.left-mascot img')
         };
     }
     
@@ -344,20 +346,18 @@ class UIManager {
         const question = getQuestion(7);
         if (!question) return;
         
+        // Change mascot to cursed version
+        this.updateMascot('ina-cursed');
+        
         // Add glitch effect to background
-        document.getElementById('app').classList.add('glitch-active-bg');
+        document.body.classList.add('glitch-background');
         
         const html = `
-            <div class="success-screen glitch-active">
-                <h2 class="success-title glitch-active">Correct!</h2>
-                <p class="trivia-text glitch-active">${question.trivia}</p>
-                ${question.videoId ? `
-                    <div class="video-container">
-                        <div id="video-player-7"></div>
-                    </div>
-                ` : ''}
-                <div class="clue-section">
-                    <h3 class="glitch-active">Final Clue Unlocked!</h3>
+            <div class="reward-screen glitch-active">
+                <h2 class="reward-title glitch-active">Question 7 Complete!</h2>
+                <p class="reward-text">You've proven yourself worthy...</p>
+                <div class="clue-display">
+                    <h3>Final Clue Unlocked!</h3>
                     <img src="${config.assets.clues}${question.clue.filename}" 
                          alt="${question.clue.title}" 
                          class="clue-image"
@@ -438,6 +438,11 @@ class UIManager {
     
     // Show final success screen
     showFinalSuccessScreen() {
+        // Remove glitch effect and restore mascot with animation
+        document.body.classList.remove('glitch-background');
+        this.updateMascot('ina-welcome');
+        this.animateMascotRestore();
+        
         const html = `
             <div class="final-success-screen">
                 <div class="ina-image bounce-in">
@@ -811,6 +816,23 @@ class UIManager {
         this.elements.clueViewer.src = '';
     };
         
+    // Update mascot image
+    updateMascot(imageName) {
+        if (this.elements.leftMascot) {
+            this.elements.leftMascot.src = `${config.assets.images}${imageName}.png`;
+        }
+    }
+    
+    // Add bounce/fade animation to mascot
+    animateMascotRestore() {
+        if (this.elements.leftMascot) {
+            this.elements.leftMascot.classList.add('mascot-restore');
+            setTimeout(() => {
+                this.elements.leftMascot.classList.remove('mascot-restore');
+            }, 1000);
+        }
+    }
+    
     // Track clue download
     trackClueDownload(clueId) {
         window.stateManager?.markClueDownloaded(clueId);
