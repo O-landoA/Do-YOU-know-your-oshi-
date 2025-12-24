@@ -229,6 +229,12 @@ class UIManager {
         
         const isQuestion7 = questionIndex === 6; // Question 7 is index 6
         
+        // For Question 7, go directly to the reward screen
+        if (isQuestion7) {
+            this.showQuestion7RewardScreen();
+            return;
+        }
+        
         const html = `
             <div class="success-screen">
                 <h2 class="success-title">Correct!</h2>
@@ -253,8 +259,8 @@ class UIManager {
                         </p>
                     ` : ''}
                 </div>
-                <button class="button continue-button" onclick="window.uiManager.${isQuestion7 ? 'showQuestion7RewardScreen' : 'nextQuestion'}()">
-                    ${isQuestion7 ? 'Continue' : 'Next Question'}
+                <button class="button continue-button" onclick="window.uiManager.nextQuestion()">
+                    Next Question
                 </button>
             </div>
         `;
