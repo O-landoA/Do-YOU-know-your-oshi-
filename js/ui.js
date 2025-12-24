@@ -371,6 +371,9 @@ class UIManager {
                 // Re-enable buttons for retry
                 buttons.forEach(btn => btn.disabled = false);
             }
+        }
+    }
+    
     // Check number answer for question 7
     checkNumberAnswer() {
         if (state.animating) return;
@@ -426,7 +429,7 @@ class UIManager {
         }
         
         updateState({ animating: true });
-    }
+    };
     
     // Show success animation (DDLC-style bounce from bottom)
     showSuccessAnimation() {
@@ -467,7 +470,7 @@ class UIManager {
             successImg.style.bottom = '-400px';
             setTimeout(() => successImg.remove(), 300);
         }, 2000);
-    }
+    };
     
     // Show wrong answer animation (random GIF) - bonks the incorrect answer
     showWrongAnimation() {
@@ -506,7 +509,7 @@ class UIManager {
             wrongImg.style.top = `${window.innerHeight}px`;
             setTimeout(() => wrongImg.remove(), 500);
         }, 1500);
-    }
+    };
     
     // Handle password input
     handlePasswordInput(index, value) {
@@ -524,7 +527,7 @@ class UIManager {
         if (state.password.every(char => char !== '')) {
             this.checkPassword();
         }
-    }
+    };
     
     // Handle password keydown
     handlePasswordKeydown(index, event) {
@@ -538,7 +541,7 @@ class UIManager {
             event.preventDefault();
             this.focusNextPasswordBox();
         }
-    }
+    };
     
     // Focus password box
     focusPasswordBox(index) {
@@ -547,7 +550,7 @@ class UIManager {
             box.focus();
             updateState({ currentPasswordBox: index });
         }
-    }
+    };
     
     // Focus next empty password box
     focusNextPasswordBox() {
@@ -555,13 +558,13 @@ class UIManager {
         if (nextIndex !== -1) {
             this.focusPasswordBox(nextIndex);
         }
-    }
+    };
     
     // Focus previous password box
     focusPreviousPasswordBox(currentIndex) {
         const prevIndex = Math.max(0, currentIndex - 1);
         this.focusPasswordBox(prevIndex);
-    }
+    };
     
     // Check password
     checkPassword() {
@@ -579,7 +582,7 @@ class UIManager {
             window.audioManager?.playSFX('wrong');
             this.shakePasswordBoxes();
         }
-    }
+    };
     
     // Shake password boxes for wrong password
     shakePasswordBoxes() {
@@ -589,7 +592,7 @@ class UIManager {
         setTimeout(() => {
             boxes.forEach(box => box.classList.remove('shake'));
         }, 500);
-    }
+    };
     
     // Clear password
     clearPassword() {
@@ -606,25 +609,25 @@ class UIManager {
         });
         
         this.focusPasswordBox(0);
-    }
+    };
     
     // Show clue modal (alias for showClue with full path)
     showClueModal(fullPath, title) {
         document.getElementById('clueTitle').textContent = title;
         this.elements.clueViewer.src = fullPath;
         this.elements.clueModal.classList.add('active');
-    }
+    };
     
     // Hide clue modal
     hideClue() {
         this.elements.clueModal.classList.remove('active');
         this.elements.clueViewer.src = '';
-    }
+    };
         
     // Track clue download
     trackClueDownload(clueId) {
         window.stateManager?.markClueDownloaded(clueId);
-    }
+    };
     
     // Start quiz
     startQuiz() {
@@ -634,7 +637,7 @@ class UIManager {
             debugLog('BGM play failed on start quiz:', e);
         });
         window.audioManager?.playRandomQuestionTrack();
-    }
+    };
     
     // Next question
     nextQuestion() {
@@ -643,13 +646,13 @@ class UIManager {
         } else {
             updateState({ currentScreen: 'question' });
         }
-    }
+    };
     
     // Restart quiz
     restart() {
         window.stateManager?.resetState();
         updateState({ currentScreen: 'onboarding' });
-    }
+    };
     
     // Show continue button (for auto-advance)
     showContinueButton() {
@@ -658,7 +661,7 @@ class UIManager {
             button.style.display = 'inline-block';
             button.classList.add('fade-in');
         }
-    }
+    };
     
     // Set up corner sticker to play on any interaction
     setupCornerSticker() {
@@ -698,7 +701,7 @@ class UIManager {
         
         // Listen for any input interaction
         document.addEventListener('input', playSticker);
-    }
+    };
 }
 
 // Create singleton instance
