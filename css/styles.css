@@ -652,6 +652,13 @@ body {
     animation: fadeIn 0.4s ease;
 }
 
+/* Ensure all text in glitch screens uses purple colors */
+.password-screen *,
+.reward-screen *,
+.password-screen * {
+    color: var(--text-primary) !important;
+}
+
 /* Prominent Submit button */
 .continue-button:not([onclick*="clearPassword"]) {
     background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
