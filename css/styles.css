@@ -39,13 +39,13 @@ body {
 .corner-sticker {
     position: fixed;
     top: -30px;
-    right: -40px;
-    width: 120px;
-    height: 120px;
+    left: -40px;
+    width: 180px;
+    height: 180px;
     z-index: 10;
     pointer-events: none;
     opacity: 1;
-    transform: rotate(10deg);
+    transform: rotate(-10deg);
 }
 
 .sticker-gif {
