@@ -166,7 +166,7 @@ class UIManager {
         const progress = ((questionIndex + 1) / getTotalQuestions()) * 100;
         
         // Check if this is a number input question
-        const isNumberInput = question.type === 'number';
+        const isNumberInput = question.questionType === 'number-input';
         
         // Play appropriate BGM
         window.audioManager?.playRandomQuestionTrack();

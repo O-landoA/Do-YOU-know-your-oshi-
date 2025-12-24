@@ -38,15 +38,19 @@ class AudioManager {
     playIntro() {
         if (!this.initialized || !config.audio.enabled) return;
         
-        this.stopAll();
-        this.currentAudio = new Audio(`${config.assets.audio}intro-bgm.mp3`);
-        this.currentAudio.loop = true;
-        this.currentAudio.volume = config.audio.bgmVolume;
-        
-        // Handle autoplay restrictions
-        this.currentAudio.play().catch(e => {
-            debugLog('BGM autoplay blocked:', e);
-        });
+        // If we have current audio, crossfade to intro
+        if (this.currentAudio) {
+            this.crossfadeToTrack(`${config.assets.audio}intro-bgm.mp3`);
+        } else {
+            this.currentAudio = new Audio(`${config.assets.audio}intro-bgm.mp3`);
+            this.currentAudio.loop = true;
+            this.currentAudio.volume = config.audio.bgmVolume;
+            
+            // Handle autoplay restrictions
+            this.currentAudio.play().catch(e => {
+                debugLog('BGM autoplay blocked:', e);
+            });
+        }
         
         updateState({ bgmPlaying: true });
         debugLog('Playing intro music');
@@ -61,15 +65,19 @@ class AudioManager {
         
         // If on question 7, play track 7 specifically
         if (currentState && currentState.currentQuestion === 6) { // Question 7 is index 6
-            this.stopAll();
-            this.currentAudio = new Audio(`${config.assets.audio}track-7.mp3`);
-            this.currentAudio.loop = true;
-            this.currentAudio.volume = config.audio.bgmVolume;
-            
-            // Handle autoplay restrictions
-            this.currentAudio.play().catch(e => {
-                debugLog('BGM autoplay blocked:', e);
-            });
+            const trackUrl = `${config.assets.audio}track-7.mp3`;
+            if (this.currentAudio) {
+                this.crossfadeToTrack(trackUrl);
+            } else {
+                this.currentAudio = new Audio(trackUrl);
+                this.currentAudio.loop = true;
+                this.currentAudio.volume = config.audio.bgmVolume;
+                
+                // Handle autoplay restrictions
+                this.currentAudio.play().catch(e => {
+                    debugLog('BGM autoplay blocked:', e);
+                });
+            }
             
             updateState({ bgmPlaying: true });
             debugLog('Playing track 7 for question 7');
@@ -78,19 +86,61 @@ class AudioManager {
         
         // For other questions, pick a random track from 1-6
         const trackNumber = Math.floor(Math.random() * 6) + 1;
+        const trackUrl = `${config.assets.audio}track-${trackNumber}.mp3`;
         
-        this.stopAll();
-        this.currentAudio = new Audio(`${config.assets.audio}track-${trackNumber}.mp3`);
-        this.currentAudio.loop = true;
-        this.currentAudio.volume = config.audio.bgmVolume;
-        
-        // Handle autoplay restrictions
-        this.currentAudio.play().catch(e => {
-            debugLog('BGM autoplay blocked:', e);
-        });
+        if (this.currentAudio) {
+            this.crossfadeToTrack(trackUrl);
+        } else {
+            this.currentAudio = new Audio(trackUrl);
+            this.currentAudio.loop = true;
+            this.currentAudio.volume = config.audio.bgmVolume;
+            
+            // Handle autoplay restrictions
+            this.currentAudio.play().catch(e => {
+                debugLog('BGM autoplay blocked:', e);
+            });
+        }
         
         updateState({ bgmPlaying: true });
         debugLog(`Playing question track ${trackNumber}`);
+    }
+    
+    // Crossfade to a new track
+    crossfadeToTrack(trackUrl, duration = 1000) {
+        if (!this.initialized || !config.audio.enabled) return;
+        
+        const newAudio = new Audio(trackUrl);
+        newAudio.loop = true;
+        newAudio.volume = 0;
+        
+        // Start playing new track
+        newAudio.play().catch(e => {
+            debugLog('New track autoplay blocked:', e);
+        });
+        
+        // Fade out old track while fading in new track
+        const fadeSteps = 20;
+        const fadeInterval = duration / fadeSteps;
+        const volumeStep = config.audio.bgmVolume / fadeSteps;
+        
+        let step = 0;
+        const fade = setInterval(() => {
+            step++;
+            
+            if (this.currentAudio) {
+                this.currentAudio.volume = Math.max(0, config.audio.bgmVolume - (volumeStep * step));
+            }
+            newAudio.volume = Math.min(config.audio.bgmVolume, volumeStep * step);
+            
+            if (step >= fadeSteps) {
+                clearInterval(fade);
+                if (this.currentAudio) {
+                    this.currentAudio.pause();
+                }
+                this.currentAudio = newAudio;
+                debugLog(`Crossfaded to new track: ${trackUrl}`);
+            }
+        }, fadeInterval);
     }
     
     // Stop all music
