@@ -140,14 +140,12 @@ class UIManager {
         const welcomeClue = quizContent.welcomeClue;
         const html = `
             <div class="onboarding-screen">
-                <div class="welcome-backdrop">
-                    <img src="${config.assets.images}Welcome page backdrop.jpg" alt="Welcome" class="welcome-bg-image">
-                    <div class="welcome-text-overlay">
-                        <h1 class="welcome-title">Do YOU know YOUR* Oshi?</h1>
-                        <p class="welcome-subtitle"><em>*MY, but I make this assertion in the name of World DomINAtion &gt;:)</em></p>
-                        <p class="welcome-tagline">Play silly games, win silly prizes! Prove you are the strongest Takodachi!</p>
-                    </div>
+                <div class="welcome-ina-corner">
+                    <img src="${config.assets.images}ina-welcome.png" alt="Ina'nis">
                 </div>
+                <h1 class="welcome-title">Do YOU know YOUR* Oshi?</h1>
+                <p class="welcome-subtitle"><em>*MY, but I make this assertion in the name of World DomINAtion &gt;:)</em></p>
+                <p class="welcome-tagline">Play silly games, win silly prizes! Prove you are the strongest Takodachi!</p>
                 <div class="welcome-clue">
                     <h3>${welcomeClue.title}</h3>
                     <img src="${config.assets.clues}${welcomeClue.filename}" 

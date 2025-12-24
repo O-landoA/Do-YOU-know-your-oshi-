@@ -225,32 +225,22 @@ body {
     text-align: center;
     animation: fadeIn 0.5s ease;
     position: relative;
-    background-color: var(--bg-primary);
 }
 
-.welcome-backdrop {
-    width: 100%;
-    margin-bottom: var(--space-lg);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    position: relative;
-}
-
-.welcome-bg-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    opacity: 0.4;
-    border-radius: var(--radius-md);
-}
-
-.welcome-text-overlay {
+.welcome-ina-corner {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    z-index: 2;
+    bottom: 10px;
+    right: 10px;
+    width: 100px;
+    height: 100px;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.welcome-ina-corner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .welcome-title {
@@ -258,21 +248,24 @@ body {
     font-size: var(--font-size-3xl);
     font-weight: 700;
     margin-bottom: 0.25rem;
+    margin-top: 0;
 }
 
 .welcome-subtitle {
     color: var(--text-secondary);
     font-size: 0.65rem;
-    opacity: 0.7;
+    opacity: 0.6;
     margin-bottom: 0.5rem;
+    margin-top: 0;
     font-style: italic;
 }
 
 .welcome-tagline {
     color: var(--text-primary);
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    margin-bottom: var(--space-lg);
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    margin-top: 0;
 }
 
 .welcome-clue {
