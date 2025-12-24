@@ -6,59 +6,16 @@ import { updateState } from './state.js';
 
 class AudioManager {
     constructor() {
-        this.tracks = {
-            intro: null,
-            questions: []
-        };
-        this.currentTrack = null;
-        this.howl = null;
+        this.currentAudio = null;
         this.initialized = false;
     }
     
-    // Initialize Howler.js
+    // Initialize audio system
     async init() {
         if (!config.audio.enabled || this.initialized) return;
         
-        try {
-            // Load Howler.js dynamically
-            if (typeof Howl === 'undefined') {
-                await this.loadHowler();
-            }
-            
-            // Load intro track
-            this.tracks.intro = new Howl({
-                src: [`${config.assets.audio}intro-bgm.mp3`],
-                loop: true,
-                volume: config.audio.bgmVolume,
-                html5: true // Use HTML5 for better mobile support
-            });
-            
-            // Load question tracks (will be loaded on demand)
-            for (let i = 1; i <= 7; i++) {
-                this.tracks.questions.push({
-                    id: i,
-                    howl: null, // Will be loaded when needed
-                    src: `${config.assets.audio}track-${i}.mp3`
-                });
-            }
-            
-            this.initialized = true;
-            debugLog('Audio manager initialized');
-        } catch (e) {
-            console.error('Failed to initialize audio:', e);
-            config.audio.enabled = false;
-        }
-    }
-    
-    // Load Howler.js if not available
-    async loadHowler() {
-        return new Promise((resolve, reject) => {
-            const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js';
-            script.onload = resolve;
-            script.onerror = reject;
-            document.head.appendChild(script);
-        });
+        this.initialized = true;
+        debugLog('Audio manager initialized');
     }
     
     // Play BGM (based on current state)
@@ -82,8 +39,15 @@ class AudioManager {
         if (!this.initialized || !config.audio.enabled) return;
         
         this.stopAll();
-        this.currentTrack = this.tracks.intro;
-        this.tracks.intro.play();
+        this.currentAudio = new Audio(`${config.assets.audio}intro-bgm.mp3`);
+        this.currentAudio.loop = true;
+        this.currentAudio.volume = config.audio.bgmVolume;
+        
+        // Handle autoplay restrictions
+        this.currentAudio.play().catch(e => {
+            debugLog('BGM autoplay blocked:', e);
+        });
+        
         updateState({ bgmPlaying: true });
         debugLog('Playing intro music');
     }
@@ -92,44 +56,28 @@ class AudioManager {
     async playRandomQuestionTrack() {
         if (!this.initialized || !config.audio.enabled) return;
         
-        // Load a random track if not already loaded
-        const availableTracks = this.tracks.questions.filter(t => !t.howl);
-        if (availableTracks.length > 0) {
-            const randomTrack = availableTracks[Math.floor(Math.random() * availableTracks.length)];
-            
-            try {
-                randomTrack.howl = new Howl({
-                    src: [randomTrack.src],
-                    loop: true,
-                    volume: config.audio.bgmVolume,
-                    html5: true
-                });
-            } catch (e) {
-                console.error('Failed to load track:', e);
-                return;
-            }
-        }
+        // Pick a random track number 1-7
+        const trackNumber = Math.floor(Math.random() * 7) + 1;
         
-        // Play a random loaded track
-        const loadedTracks = this.tracks.questions.filter(t => t.howl);
-        if (loadedTracks.length > 0) {
-            const randomTrack = loadedTracks[Math.floor(Math.random() * loadedTracks.length)];
-            
-            this.stopAll();
-            this.currentTrack = randomTrack.howl;
-            randomTrack.howl.play();
-            updateState({ bgmPlaying: true });
-            debugLog(`Playing question track ${randomTrack.id}`);
-        }
+        this.stopAll();
+        this.currentAudio = new Audio(`${config.assets.audio}track-${trackNumber}.mp3`);
+        this.currentAudio.loop = true;
+        this.currentAudio.volume = config.audio.bgmVolume;
+        
+        // Handle autoplay restrictions
+        this.currentAudio.play().catch(e => {
+            debugLog('BGM autoplay blocked:', e);
+        });
+        
+        updateState({ bgmPlaying: true });
+        debugLog(`Playing question track ${trackNumber}`);
     }
     
     // Stop all music
     stopAll() {
-        if (!this.initialized) return;
-        
-        if (this.currentTrack) {
-            this.currentTrack.stop();
-            this.currentTrack = null;
+        if (this.currentAudio) {
+            this.currentAudio.pause();
+            this.currentAudio = null;
         }
         
         updateState({ bgmPlaying: false });
@@ -138,31 +86,23 @@ class AudioManager {
     
     // Fade out current track
     fadeOut(duration = config.audio.fadeDuration) {
-        if (!this.initialized || !this.currentTrack) return;
+        if (!this.initialized || !this.currentAudio) return;
         
-        this.currentTrack.fade(this.currentTrack.volume(), 0, duration);
+        const fadeSteps = 20;
+        const fadeInterval = duration / fadeSteps;
+        const volumeStep = this.currentAudio.volume / fadeSteps;
         
-        setTimeout(() => {
-            if (this.currentTrack) {
-                this.currentTrack.stop();
-                this.currentTrack = null;
+        const fade = setInterval(() => {
+            if (this.currentAudio.volume > volumeStep) {
+                this.currentAudio.volume -= volumeStep;
+            } else {
+                clearInterval(fade);
+                this.stopAll();
             }
-        }, duration);
+        }, fadeInterval);
         
         updateState({ bgmPlaying: false });
         debugLog(`Faded out music over ${duration}ms`);
-    }
-    
-    // Fade in a track
-    fadeIn(track, duration = config.audio.fadeDuration) {
-        if (!this.initialized || !config.audio.enabled || !track) return;
-        
-        track.volume(0);
-        track.play();
-        track.fade(0, config.audio.bgmVolume, duration);
-        this.currentTrack = track;
-        updateState({ bgmPlaying: true });
-        debugLog(`Faded in music over ${duration}ms`);
     }
     
     // Set volume
@@ -171,8 +111,8 @@ class AudioManager {
         
         config.audio.bgmVolume = Math.max(0, Math.min(1, volume));
         
-        if (this.currentTrack) {
-            this.currentTrack.volume(config.audio.bgmVolume);
+        if (this.currentAudio) {
+            this.currentAudio.volume = config.audio.bgmVolume;
         }
         
         debugLog(`Set volume to ${config.audio.bgmVolume}`);
@@ -182,18 +122,20 @@ class AudioManager {
     toggle() {
         if (!this.initialized) return;
         
-        if (this.currentTrack && this.currentTrack.playing()) {
-            this.currentTrack.pause();
+        if (this.currentAudio && !this.currentAudio.paused) {
+            this.currentAudio.pause();
             updateState({ bgmPlaying: false });
-        } else if (this.currentTrack) {
-            this.currentTrack.play();
+        } else if (this.currentAudio) {
+            this.currentAudio.play().catch(e => {
+                debugLog('Audio play failed:', e);
+            });
             updateState({ bgmPlaying: true });
         }
         
         debugLog('Toggled music playback');
     }
     
-    // Play sound effect
+    // Play sound effect (using Web Audio API for better performance)
     playSFX(type) {
         if (!this.initialized || !config.audio.enabled) return;
         
@@ -208,25 +150,26 @@ class AudioManager {
         const filename = sfxMap[type];
         if (!filename) return;
         
-        const sfx = new Howl({
-            src: [`${config.assets.audio}${filename}`],
-            volume: config.audio.sfxVolume,
-            html5: true
+        const sfx = new Audio(`${config.assets.audio}${filename}`);
+        sfx.volume = config.audio.sfxVolume;
+        sfx.play().catch(e => {
+            debugLog('SFX play failed:', e);
         });
         
-        sfx.play();
         debugLog(`Played SFX: ${type}`);
     }
     
     // Handle visibility change (pause when tab is hidden)
     handleVisibilityChange() {
         if (document.hidden) {
-            if (this.currentTrack && this.currentTrack.playing()) {
-                this.currentTrack.pause();
+            if (this.currentAudio && !this.currentAudio.paused) {
+                this.currentAudio.pause();
             }
         } else {
-            if (this.currentTrack && !this.currentTrack.playing() && state.bgmPlaying) {
-                this.currentTrack.play();
+            if (this.currentAudio && this.currentAudio.paused && state.bgmPlaying) {
+                this.currentAudio.play().catch(e => {
+                    debugLog('Audio resume failed:', e);
+                });
             }
         }
     }
@@ -236,18 +179,6 @@ class AudioManager {
         if (!this.initialized) return;
         
         this.stopAll();
-        
-        // Unload all tracks
-        if (this.tracks.intro) {
-            this.tracks.intro.unload();
-        }
-        
-        this.tracks.questions.forEach(track => {
-            if (track.howl) {
-                track.howl.unload();
-            }
-        });
-        
         this.initialized = false;
         debugLog('Audio manager destroyed');
     }

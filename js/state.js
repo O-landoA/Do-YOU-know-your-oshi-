@@ -120,13 +120,12 @@ export function loadState() {
         
         const data = JSON.parse(saved);
         
-        // Restore progress
+        // Restore progress without triggering UI updates
         if (data.progress) {
-            updateState({
-                currentQuestion: data.progress.currentQuestion || 0,
-                unlockedClues: data.progress.unlockedClues || [],
-                score: data.progress.score || 0
-            });
+            // Directly update state without calling updateState
+            state.currentQuestion = data.progress.currentQuestion || 0;
+            state.unlockedClues = data.progress.unlockedClues || [];
+            state.score = data.progress.score || 0;
         }
         
         // Restore session
