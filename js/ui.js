@@ -251,7 +251,7 @@ class UIManager {
                         </p>
                     ` : ''}
                 </div>
-                <button class="button continue-button" onclick="window.uiManager.${isQuestion7 ? 'showQuestion7Reward' : 'nextQuestion'}()">
+                <button class="button continue-button" onclick="window.uiManager.${isQuestion7 ? 'showQuestion7RewardScreen' : 'nextQuestion'}()">
                     ${isQuestion7 ? 'Continue' : 'Next Question'}
                 </button>
             </div>
