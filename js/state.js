@@ -136,8 +136,10 @@ export function loadState() {
         }
         
         debugLog('State loaded from localStorage');
+        return data; // Return the loaded data for further processing
     } catch (e) {
         console.error('Failed to load state:', e);
+        return null;
     }
 }
 

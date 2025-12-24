@@ -1,7 +1,7 @@
 // Main Application Entry Point - Do you know Your* Oshi? Quiz
 
 import { config, debugLog } from './config.js';
-import { loadState, startSession, subscribe } from './state.js';
+import { loadState, startSession, subscribe, updateState } from './state.js';
 import { audioManager } from './audio.js';
 import { videoManager } from './video.js';
 import { uiManager } from './ui.js';
@@ -27,7 +27,7 @@ class QuizApp {
             this.modules.ui.showLoadingScreen();
             
             // Load saved state
-            loadState();
+            const savedState = loadState();
             
             // Initialize modules
             await this.initializeModules();
@@ -113,22 +113,15 @@ class QuizApp {
         }, 100);
         
         // Determine initial screen
-        const savedState = loadState();
-        
-        // Clear any stale screen state to prevent success screen showing first
-        if (savedState) {
-            updateState({ currentScreen: 'loading' });
-        }
-        
-        if (!savedState || savedState.currentQuestion === 0) {
+        if (!savedState || savedState.progress.currentQuestion === 0) {
             // First time playing or no saved state
             this.modules.ui.showOnboardingScreen();
-        } else if (savedState.isComplete) {
+        } else if (savedState.progress.currentQuestion >= 7) {
             // Already completed
-            this.modules.ui.showCompletionScreen();
+            this.modules.ui.showPasswordScreen();
         } else {
             // Resume from saved progress
-            this.resumeFromSave();
+            this.modules.ui.showQuestionScreen(savedState.progress.currentQuestion);
         }
         
         debugLog('Quiz App started');
