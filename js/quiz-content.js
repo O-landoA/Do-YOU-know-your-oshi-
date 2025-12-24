@@ -112,7 +112,7 @@ export const quizContent = {
       answers: [
         "Empty, 0",
         "Full, 1",
-        "Infinite, √-1",
+        "Infinite, ∞",
         "Two flat objects, 2"
       ],
       correct: 0,

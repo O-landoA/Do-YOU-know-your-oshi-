@@ -652,6 +652,28 @@ body {
     animation: fadeIn 0.4s ease;
 }
 
+/* Prominent Submit button */
+.continue-button:not([onclick*="clearPassword"]) {
+    background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+    color: var(--bg-card);
+    padding: var(--space-md) calc(var(--space-xl) * 1.5);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin-top: var(--space-lg);
+    transition: all var(--transition-normal);
+    box-shadow: 0 4px 15px rgba(75, 59, 115, 0.3);
+    border: 2px solid var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.continue-button:not([onclick*="clearPassword"]):hover {
+    background: linear-gradient(135deg, var(--text-secondary), var(--text-primary));
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(75, 59, 115, 0.4);
+}
+
 .password-title {
     color: var(--text-primary);
     font-size: var(--font-size-2xl);
