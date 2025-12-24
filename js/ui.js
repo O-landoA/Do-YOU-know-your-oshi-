@@ -87,8 +87,13 @@ class UIManager {
     handleStateChange(newState) {
         debugLog('UI handling state change:', newState.currentScreen);
         
+        // Track last screen to prevent unnecessary re-renders
+        if (!this.lastScreen) this.lastScreen = 'loading';
+        
         // Only re-render if the screen actually changed
-        if (newState.currentScreen !== state.currentScreen) {
+        if (newState.currentScreen !== this.lastScreen) {
+            this.lastScreen = newState.currentScreen;
+            
             // Update screen based on state
             switch (newState.currentScreen) {
                 case 'loading':
