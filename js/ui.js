@@ -232,8 +232,8 @@ class UIManager {
         
         const html = `
             <div class="success-screen">
-                <div class="ina-image bounce-in">
-                    <img src="${config.assets.images}ina-correct.png" alt="Ina'nis" width="150" height="150">
+                <div class="success-tako-corner">
+                    <img src="${config.assets.images}ao8qxx5y1yn71.jpg" alt="Tako">
                 </div>
                 <h2 class="success-title">Correct!</h2>
                 <p class="trivia-text">${question.trivia}</p>
@@ -476,10 +476,17 @@ class UIManager {
         }, 2000);
     }
     
-    // Show wrong answer animation (random GIF)
+    // Show wrong answer animation (random GIF) - bonks the incorrect answer
     showWrongAnimation() {
         // Pick a random wrong GIF
         const randomGif = config.wrongGifs[Math.floor(Math.random() * config.wrongGifs.length)];
+        
+        // Find the incorrect button to get its position
+        const incorrectButton = document.querySelector('.answer-button.incorrect');
+        if (!incorrectButton) return;
+        
+        const buttonRect = incorrectButton.getBoundingClientRect();
+        const targetBottom = window.innerHeight - buttonRect.top + 20; // Position above the button
         
         const wrongImg = document.createElement('div');
         wrongImg.className = 'wrong-animation ddlc-bounce-in';
@@ -495,9 +502,9 @@ class UIManager {
         
         document.body.appendChild(wrongImg);
         
-        // Bounce in from bottom
+        // Bounce in from bottom to bonk the incorrect answer
         setTimeout(() => {
-            wrongImg.style.bottom = '80px';
+            wrongImg.style.bottom = `${targetBottom}px`;
         }, 50);
         
         // Bounce out after delay
