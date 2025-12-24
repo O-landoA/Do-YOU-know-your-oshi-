@@ -371,7 +371,7 @@ class UIManager {
                 // Re-enable buttons for retry
                 buttons.forEach(btn => btn.disabled = false);
             }
-        }
+        });
     }
     
     // Check number answer for question 7
