@@ -155,6 +155,7 @@ class UIManager {
         `;
         this.renderContent(html);
         this.lastScreen = 'onboarding';
+        updateState({ currentScreen: 'onboarding' });
     }
     
     // Show question screen
@@ -165,49 +166,33 @@ class UIManager {
         const progress = ((questionIndex + 1) / getTotalQuestions()) * 100;
         
         // Check if this is a number input question
-        if (question.questionType === 'number-input') {
-            const html = `
-                <div class="question-screen question-7">
-                    <div class="question-header">
-                        <div class="question-number">Question ${questionIndex + 1} of ${getTotalQuestions()}</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: ${progress}%"></div>
-                        </div>
-                    </div>
-                    <h2 class="question-text">${question.question}</h2>
-                    <div class="number-input-container">
-                        <input type="number" 
-                               class="number-input" 
-                               id="numberAnswer"
-                               placeholder="Enter number"
-                               min="0"
-                               max="999"
-                               inputmode="numeric"
-                               pattern="[0-9]*">
-                        <button class="button continue-button" onclick="window.uiManager.checkNumberAnswer()">
-                            Submit Answer
-                        </button>
+        const isNumberInput = question.type === 'number';
+        
+        // Play appropriate BGM
+        window.audioManager?.playRandomQuestionTrack();
+        
+        const html = `
+            <div class="question-screen">
+                <div class="question-header">
+                    <div class="question-number">Question ${questionIndex + 1} of ${getTotalQuestions()}</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progress}%"></div>
                     </div>
                 </div>
-            `;
-            this.renderContent(html);
-            
-            // Focus the input
-            setTimeout(() => {
-                document.getElementById('numberAnswer')?.focus();
-            }, 100);
-        } else {
-            // Regular multiple choice question
-            const questionClass = questionIndex === 6 ? 'question-screen question-7' : 'question-screen';
-            const html = `
-                <div class="${questionClass}">
-                    <div class="question-header">
-                        <div class="question-number">Question ${questionIndex + 1} of ${getTotalQuestions()}</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: ${progress}%"></div>
-                        </div>
+                <h2 class="question-text">${question.question}</h2>
+                ${isNumberInput ? `
+                    <div class="number-input-container">
+                        <input type="text" 
+                               id="numberAnswer" 
+                               class="number-input" 
+                               placeholder="Enter your answer"
+                               maxlength="20"
+                               onkeypress="if(event.key === 'Enter') window.uiManager.checkNumberAnswer()">
+                        <button class="button" onclick="window.uiManager.checkNumberAnswer()">
+                            Submit
+                        </button>
                     </div>
-                    <h2 class="question-text">${question.question}</h2>
+                ` : `
                     <div class="answers-grid">
                         ${question.answers.map((answer, index) => `
                             <button class="button answer-button" onclick="window.uiManager.selectAnswer(${index})">
@@ -216,9 +201,19 @@ class UIManager {
                             </button>
                         `).join('')}
                     </div>
-                </div>
-            `;
-            this.renderContent(html);
+                `}
+            </div>
+        `;
+        this.renderContent(html);
+        this.lastScreen = 'question';
+        updateState({ currentScreen: 'question' });
+        
+        // Focus number input if present
+        if (isNumberInput) {
+            setTimeout(() => {
+                const input = document.getElementById('numberAnswer');
+                if (input) input.focus();
+            }, 100);
         }
     }
     
