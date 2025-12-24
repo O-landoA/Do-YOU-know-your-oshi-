@@ -288,7 +288,7 @@ class UIManager {
     showPasswordScreen() {
         const html = `
             <div class="password-screen ${state.glitchActive ? 'glitch-active-bg' : ''}">
-                <h2 class="password-title ${state.glitchActive ? 'glitch-active' : ''}" style="transform: translateX(100px);">Enter the Secret Code</h2>
+                <h2 class="password-title ${state.glitchActive ? 'glitch-active' : ''}" style="transform: translateX(180px);">Enter the Secret Code</h2>
                 <div class="password-boxes" style="transform: translateX(0); display: flex; gap: 8px; justify-content: center;">
                     ${Array.from({ length: 8 }, (_, i) => `
                         <input type="text" 
@@ -366,7 +366,7 @@ class UIManager {
         
         const html = `
             <div class="reward-screen glitch-active">
-                <h2 class="reward-title glitch-active" style="transform: translateX(50px);">Question 7 Complete!</h2>
+                <h2 class="reward-title glitch-active" style="transform: translateX(120px);">Question 7 Complete!</h2>
                 <p class="reward-text" style="transform: translateX(0);">You've proven yourself worthy...</p>
                 <div class="clue-display" style="transform: translateX(0);">
                     <h3 style="transform: translateX(0);">Final Clue Unlocked!</h3>
