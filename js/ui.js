@@ -7,7 +7,9 @@ import { quizContent, getQuestion, getTotalQuestions } from './quiz-content.js';
 
 class UIManager {
     constructor() {
-        this.elements = {};
+        this.lastScreen = null;
+        this.lastStickerPosition = null;
+        this.cacheElements();
         this.currentContent = null;
         this.init();
     }
@@ -619,11 +621,23 @@ class UIManager {
         
         // Calculate random horizontal position (avoid center 25%: 0-37.5% or 62.5-100%)
         let randomLeft;
-        if (Math.random() < 0.5) {
+        let isLeftSide;
+        
+        // If we have a last position, ensure we don't use the same side
+        if (this.lastStickerPosition !== null) {
+            isLeftSide = !this.lastStickerPosition; // Switch sides
+        } else {
+            isLeftSide = Math.random() < 0.5;
+        }
+        
+        if (isLeftSide) {
             randomLeft = Math.random() * 37.5; // 0% to 37.5%
         } else {
             randomLeft = 62.5 + Math.random() * 37.5; // 62.5% to 100%
         }
+        
+        // Store the current side for next time
+        this.lastStickerPosition = isLeftSide;
         
         const successImg = document.createElement('div');
         successImg.className = 'success-sticker ddlc-bounce-in';

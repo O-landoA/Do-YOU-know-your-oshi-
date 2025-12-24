@@ -8,6 +8,7 @@ class AudioManager {
     constructor() {
         this.currentAudio = null;
         this.initialized = false;
+        this.lastPlayedTrack = null;
     }
     
     // Initialize audio system
@@ -85,7 +86,12 @@ class AudioManager {
         }
         
         // For other questions, pick a random track from 1-6
-        const trackNumber = Math.floor(Math.random() * 6) + 1;
+        let trackNumber;
+        do {
+            trackNumber = Math.floor(Math.random() * 6) + 1;
+        } while (trackNumber === this.lastPlayedTrack);
+        
+        this.lastPlayedTrack = trackNumber;
         const trackUrl = `${config.assets.audio}track-${trackNumber}.mp3`;
         
         if (this.currentAudio) {
