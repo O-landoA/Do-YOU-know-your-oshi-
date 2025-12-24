@@ -85,14 +85,16 @@ class AudioManager {
             return;
         }
         
-        // For other questions, pick a random track from 1-6
+        // For other questions, pick a random track from 0-6 (0 is intro-bgm)
         let trackNumber;
         do {
-            trackNumber = Math.floor(Math.random() * 6) + 1;
+            trackNumber = Math.floor(Math.random() * 7); // 0-6
         } while (trackNumber === this.lastPlayedTrack);
         
         this.lastPlayedTrack = trackNumber;
-        const trackUrl = `${config.assets.audio}track-${trackNumber}.mp3`;
+        const trackUrl = trackNumber === 0 ? 
+            `${config.assets.audio}intro-bgm.mp3` : 
+            `${config.assets.audio}track-${trackNumber}.mp3`;
         
         if (this.currentAudio) {
             this.crossfadeToTrack(trackUrl);
