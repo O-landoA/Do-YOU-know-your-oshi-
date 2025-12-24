@@ -137,7 +137,7 @@ class UIManager {
         const html = `
             <div class="onboarding-screen">
                 <div class="ina-image bounce-in">
-                    <img src="${config.assets.images}ina-welcome.svg" alt="Ina'nis" width="200" height="200">
+                    <img src="${config.assets.images}ina-welcome.png" alt="Ina'nis" width="200" height="200">
                 </div>
                 <h1>Do you know Your Oshi?</h1>
                 <p>Test your knowledge about Ninomae Ina'nis!</p>
@@ -228,7 +228,7 @@ class UIManager {
         const html = `
             <div class="success-screen">
                 <div class="ina-image bounce-in">
-                    <img src="${config.assets.images}ina-correct.svg" alt="Ina'nis" width="150" height="150">
+                    <img src="${config.assets.images}ina-correct.png" alt="Ina'nis" width="150" height="150">
                 </div>
                 <h2 class="success-title">Correct!</h2>
                 <p class="trivia-text">${question.trivia}</p>
@@ -298,7 +298,7 @@ class UIManager {
         const html = `
             <div class="completion-screen">
                 <div class="ina-image bounce-in">
-                    <img src="${config.assets.images}ina-celebration.svg" alt="Ina'nis" width="200" height="200">
+                    <img src="${config.assets.images}ina-celebration.png" alt="Ina'nis" width="200" height="200">
                 </div>
                 <h1 class="completion-title">Congratulations!</h1>
                 <p class="completion-message">${quizContent.finalReward.message}</p>
@@ -315,11 +315,12 @@ class UIManager {
                 <div style="margin: 2rem 0;">
                     <h3>Final Clue</h3>
                     <p>${quizContent.finalReward.location}</p>
-                    <a href="${config.assets.clues}${quizContent.finalReward.finalClue.filename}" 
-                       class="clue-download" 
-                       download="${quizContent.finalReward.finalClue.filename}">
-                        Download Final Clue
-                    </a>
+                    <div class="clue-display" onclick="window.uiManager.showClueModal('${config.assets.clues}${quizContent.finalReward.finalClue.filename}', '${quizContent.finalReward.finalClue.title}')">
+                        <img src="${config.assets.clues}${quizContent.finalReward.finalClue.filename}" 
+                             alt="${quizContent.finalReward.finalClue.title}" 
+                             class="clue-thumbnail">
+                        <span>View ${quizContent.finalReward.finalClue.title}</span>
+                    </div>
                 </div>
                 <button class="button continue-button" onclick="window.uiManager.restart()">
                     Play Again
@@ -427,7 +428,7 @@ class UIManager {
         const wrongImg = document.createElement('div');
         wrongImg.className = 'wrong-animation bounce-in';
         wrongImg.innerHTML = `
-            <img src="${config.assets.images}ina-wrong.svg" alt="Wrong!" width="100" height="100">
+            <img src="${config.assets.images}ina-wrong.gif" alt="Wrong!" width="100" height="100">
         `;
         wrongImg.style.position = 'fixed';
         wrongImg.style.bottom = '20px';
