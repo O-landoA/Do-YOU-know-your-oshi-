@@ -36,12 +36,16 @@ class UIManager {
             galleryGrid: document.getElementById('galleryGrid'),
             clueModal: document.getElementById('clueModal'),
             closeClue: document.getElementById('closeClue'),
-            clueViewer: document.getElementById('clueViewer')
+            clueViewer: document.getElementById('clueViewer'),
+            cornerSticker: document.getElementById('cornerSticker')
         };
     }
     
     // Set up event listeners
     setupEventListeners() {
+        // Set up corner sticker interaction
+        this.setupCornerSticker();
+        
         // Gallery button
         this.elements.galleryBtn.addEventListener('click', () => {
             this.showGallery();
@@ -684,6 +688,46 @@ class UIManager {
             button.style.display = 'inline-block';
             button.classList.add('fade-in');
         }
+    }
+    
+    // Set up corner sticker to play on any interaction
+    setupCornerSticker() {
+        let isPlaying = false;
+        const sticker = this.elements.cornerSticker;
+        const img = sticker.querySelector('.sticker-gif');
+        
+        const playSticker = () => {
+            if (isPlaying) return;
+            
+            isPlaying = true;
+            
+            // Reset GIF by changing src
+            const originalSrc = img.src;
+            img.src = '';
+            img.src = originalSrc;
+            
+            // Show sticker
+            sticker.classList.add('active');
+            
+            // Hide after GIF plays (approximately 2 seconds)
+            setTimeout(() => {
+                sticker.classList.remove('active');
+                isPlaying = false;
+            }, 2000);
+        };
+        
+        // Listen for any click on the main card
+        this.elements.mainCard.addEventListener('click', playSticker);
+        
+        // Listen for any button interaction
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('button, .answer-button, .continue-button')) {
+                playSticker();
+            }
+        });
+        
+        // Listen for any input interaction
+        document.addEventListener('input', playSticker);
     }
 }
 
