@@ -32,16 +32,13 @@ class UIManager {
             mainCard: document.getElementById('mainCard'),
             clueModal: document.getElementById('clueModal'),
             closeClue: document.getElementById('closeClue'),
-            clueViewer: document.getElementById('clueViewer'),
-            cornerSticker: document.getElementById('cornerSticker')
+            clueViewer: document.getElementById('clueViewer')
+            // cornerSticker removed - no longer exists
         };
     }
     
     // Set up event listeners
     setupEventListeners() {
-        // Set up corner sticker interaction
-        this.setupCornerSticker();
-        
         // Close clue modal
         this.elements.closeClue.addEventListener('click', () => {
             this.hideClue();
@@ -248,12 +245,12 @@ class UIManager {
         // Load video if present
         if (question.videoId) {
             setTimeout(() => {
-                window.videoManager?.createVideoEmbed(
+                window.videoManager?.createPlayer(
                     `video-player-${questionIndex}`, 
                     question.videoId,
-                    { autoplay: 0 }
+                    { autoplay: 0, muted: 1 }
                 );
-            }, 100);
+            }, 500); // Increased delay to ensure DOM is ready
         }
     }
     
@@ -371,7 +368,7 @@ class UIManager {
                 // Re-enable buttons for retry
                 buttons.forEach(btn => btn.disabled = false);
             }
-        });
+        }, 1500); // Added 1.5 second delay
     }
     
     // Check number answer for question 7
@@ -436,12 +433,12 @@ class UIManager {
         // Pick a random success sticker
         const randomSticker = config.successStickers[Math.floor(Math.random() * config.successStickers.length)];
         
-        // Calculate random horizontal position (avoid center 10%: 0-45% or 55-100%)
+        // Calculate random horizontal position (avoid center 25%: 0-37.5% or 62.5-100%)
         let randomLeft;
         if (Math.random() < 0.5) {
-            randomLeft = Math.random() * 45; // 0% to 45%
+            randomLeft = Math.random() * 37.5; // 0% to 37.5%
         } else {
-            randomLeft = 55 + Math.random() * 45; // 55% to 100%
+            randomLeft = 62.5 + Math.random() * 37.5; // 62.5% to 100%
         }
         
         const successImg = document.createElement('div');
@@ -459,17 +456,17 @@ class UIManager {
         
         document.body.appendChild(successImg);
         
-        // Bounce in from bottom
+        // Bounce in from bottom - increased delay
         setTimeout(() => {
             successImg.style.bottom = '100px';
-        }, 50);
+        }, 500); // Increased from 50ms to 500ms
         
         // Bounce out after delay (faster transition)
         setTimeout(() => {
             successImg.style.transition = 'bottom 0.3s ease-in';
             successImg.style.bottom = '-400px';
             setTimeout(() => successImg.remove(), 300);
-        }, 2000);
+        }, 2500); // Increased from 2000ms to 2500ms
     };
     
     // Show wrong answer animation (random GIF) - bonks the incorrect answer

@@ -61,6 +61,22 @@ class AudioManager {
         });
     }
     
+    // Play BGM (based on current state)
+    async playBGM() {
+        if (!this.initialized || !config.audio.enabled) return;
+        
+        // Check if we should play intro or question tracks
+        const currentState = await import('./state.js').then(m => m.getState());
+        
+        if (currentState && currentState.currentQuestion > 0) {
+            // Play random question track
+            this.playRandomQuestionTrack();
+        } else {
+            // Play intro track
+            this.playIntro();
+        }
+    }
+    
     // Play intro music
     playIntro() {
         if (!this.initialized || !config.audio.enabled) return;

@@ -81,8 +81,10 @@ class QuizApp {
         debugLog('Starting Quiz App...');
         debugLog('Start method reached');
         
-        // Expose uiManager globally for button onclick handlers
+        // Expose managers globally for button onclick handlers
         window.uiManager = this.modules.ui;
+        window.audioManager = this.modules.audio;
+        window.videoManager = this.modules.video;
         
         // Start session tracking
         startSession();
