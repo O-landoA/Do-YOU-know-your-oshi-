@@ -43,7 +43,7 @@ export const quizContent = {
         "8"
       ],
       correct: 0,
-      trivia: "<em>Ina's first original song, \"VIOLET,\" was released on July 17, 2021. The song features her vocals and was well-received by fans.</em>",
+      trivia: "<em>First suggested by channel member Rayett Ray in chat of the original Ender Lilies #2 stream, as \"we all HYPE.\"</em><br><a href='https://www.youtube.com/watch?v=yoYaAVixPg8&t=4692s' target='_blank' style='color: var(--accent-color);'>Watch at 1h18m12s</a>",
       videoId: "yoYaAVixPg8", // Will show at 1h18m12s
       videoId2: "u2IwXhwO4Tc", // Second video for this question
       clue: {
@@ -62,7 +62,7 @@ export const quizContent = {
         "#8"
       ],
       correct: 3,
-      trivia: "<em>The 8th WAH (We Adore Her) was officially canonised during Pokémon Violet Stream #8.</em>",
+      trivia: "<em>The 8th WAH (We Adore Her) was officially canonised during Pokémon Violet Stream #8.</em><br><a href='https://www.youtube.com/watch?v=gQoGK9YDcEY&t=3780s' target='_blank' style='color: var(--accent-color);'>Watch at 1h3m</a>",
       videoId: "gQoGK9YDcEY", // Will show at 1h3m
       clue: {
         filename: "clue-3.png",
@@ -80,7 +80,7 @@ export const quizContent = {
         "11"
       ],
       correct: 2,
-      trivia: "<em>The TTRPG - Myth Breakers playlist contains 9 episodes of tabletop RPG adventures with the Myth members.</em>",
+      trivia: "<em>The TTRPG - Myth Breakers playlist contains 9 episodes of tabletop RPG adventures with the Myth members.</em><br><a href='https://www.youtube.com/playlist?list=PLQZecHYc3j2pIhdKqZwb7Jz73laAsLKYE' target='_blank' style='color: var(--accent-color);'>Watch full playlist</a>",
       playlistId: "PLQZecHYc3j2pIhdKqZwb7Jz73laAsLKYE", // Playlist instead of single video
       clue: {
         filename: "clue-4.png",

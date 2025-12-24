@@ -565,7 +565,9 @@ class UIManager {
             return;
         }
         
-        const isCorrect = userAnswer === question.correctAnswer;
+        const isCorrect = userAnswer.toLowerCase() === question.correctAnswer.toLowerCase() ||
+                      userAnswer.toLowerCase() === 'one' ||
+                      userAnswer.toLowerCase() === '1';
         
         // Disable input
         input.disabled = true;
@@ -595,6 +597,7 @@ class UIManager {
                 input.classList.remove('incorrect');
                 input.value = '';
                 input.focus();
+                updateState({ animating: false });
             }, config.animations.bounceDuration);
         }
         
