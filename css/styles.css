@@ -248,24 +248,21 @@ body {
     font-size: var(--font-size-3xl);
     font-weight: 700;
     margin-bottom: 0.25rem;
-    margin-top: 0;
 }
 
 .welcome-subtitle {
     color: var(--text-secondary);
     font-size: 0.65rem;
     opacity: 0.6;
-    margin-bottom: 0.5rem;
-    margin-top: 0;
+    margin-bottom: var(--space-lg);
     font-style: italic;
 }
 
 .welcome-tagline {
     color: var(--text-primary);
-    font-size: var(--font-size-md);
-    font-weight: 500;
-    margin-bottom: 1rem;
-    margin-top: 0;
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-xl);
 }
 
 .welcome-clue {

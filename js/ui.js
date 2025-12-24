@@ -445,6 +445,9 @@ class UIManager {
         // Pick a random success sticker
         const randomSticker = config.successStickers[Math.floor(Math.random() * config.successStickers.length)];
         
+        // Calculate random horizontal position (20% to 80% of screen width to avoid clipping)
+        const randomLeft = 20 + Math.random() * 60; // Random between 20% and 80%
+        
         const successImg = document.createElement('div');
         successImg.className = 'success-sticker ddlc-bounce-in';
         successImg.innerHTML = `
@@ -452,7 +455,7 @@ class UIManager {
         `;
         successImg.style.position = 'fixed';
         successImg.style.bottom = '-400px'; // Start below screen
-        successImg.style.left = '50%';
+        successImg.style.left = `${randomLeft}%`;
         successImg.style.transform = 'translateX(-50%)';
         successImg.style.zIndex = '9999';
         successImg.style.transition = 'bottom 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
@@ -464,10 +467,11 @@ class UIManager {
             successImg.style.bottom = '100px';
         }, 50);
         
-        // Bounce out after delay
+        // Bounce out after delay (faster transition)
         setTimeout(() => {
+            successImg.style.transition = 'bottom 0.3s ease-in';
             successImg.style.bottom = '-400px';
-            setTimeout(() => successImg.remove(), 500);
+            setTimeout(() => successImg.remove(), 300);
         }, 2000);
     }
     
