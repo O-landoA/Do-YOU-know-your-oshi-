@@ -237,7 +237,7 @@ class UIManager {
         
         const html = `
             <div class="success-screen">
-                <h2 class="success-title">Correct!</h2>
+                <h2 class="success-title">WAHmazing!</h2>
                 <p class="trivia-text">${question.trivia}</p>
                 ${question.videoId ? `
                     <div class="video-container">
