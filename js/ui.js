@@ -148,9 +148,6 @@ class UIManager {
                         <p class="welcome-tagline">Play silly games, win silly prizes! Prove you are the strongest Takodachi!</p>
                     </div>
                 </div>
-                <div class="ina-image bounce-in">
-                    <img src="${config.assets.images}ina-welcome.png" alt="Ina'nis" width="200" height="200">
-                </div>
                 <div class="welcome-clue">
                     <h3>${welcomeClue.title}</h3>
                     <img src="${config.assets.clues}${welcomeClue.filename}" 
