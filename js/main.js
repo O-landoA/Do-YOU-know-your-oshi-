@@ -54,20 +54,32 @@ class QuizApp {
     async initializeModules() {
         debugLog('Initializing modules...');
         
-        // Initialize audio manager
-        await this.modules.audio.init();
-        
-        // Initialize video manager
-        await this.modules.video.init();
-        
-        // UI manager is already initialized in constructor
-        
-        debugLog('All modules initialized');
+        try {
+            // Initialize audio manager
+            debugLog('Initializing audio...');
+            await this.modules.audio.init();
+            debugLog('Audio initialized');
+            
+            // Initialize video manager
+            debugLog('Initializing video...');
+            await this.modules.video.init();
+            debugLog('Video initialized');
+            
+            // UI manager is already initialized in constructor
+            
+            debugLog('All modules initialized');
+        } catch (error) {
+            console.error('Module initialization failed:', error);
+            debugLog('Module initialization failed:', error);
+            // Continue with initialization even if audio/video fails
+            debugLog('Continuing without failed modules...');
+        }
     }
     
     // Start the application
     start() {
         debugLog('Starting Quiz App...');
+        debugLog('Start method reached');
         
         // Expose uiManager globally for button onclick handlers
         window.uiManager = this.modules.ui;

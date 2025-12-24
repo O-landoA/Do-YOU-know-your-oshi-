@@ -124,6 +124,8 @@ class UIManager {
     
     // Show onboarding screen
     showOnboardingScreen() {
+        debugLog('showOnboardingScreen called');
+        debugLog('quizContent:', quizContent);
         const welcomeClue = quizContent.welcomeClue;
         const html = `
             <div class="onboarding-screen">
