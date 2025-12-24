@@ -57,8 +57,8 @@ body {
 /* Corner Sticker - Bottom Right GIF */
 .corner-sticker {
     position: absolute;
-    bottom: 60px;
-    right: 200px;
+    bottom: 40px;
+    right: 300px;
     width: 120px;
     height: 120px;
     z-index: 10;

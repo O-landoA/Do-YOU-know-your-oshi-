@@ -474,7 +474,8 @@ class UIManager {
         if (!incorrectButton) return;
         
         const buttonRect = incorrectButton.getBoundingClientRect();
-        const targetBottom = window.innerHeight - buttonRect.top - 50; // Position above the button, adjusted down
+        // Position the bonk animation directly above the button
+        const targetTop = buttonRect.top - 200; // 200px above the button
         
         const wrongImg = document.createElement('div');
         wrongImg.className = 'wrong-animation ddlc-bounce-in';
@@ -482,22 +483,22 @@ class UIManager {
             <img src="${config.assets.images}${randomGif}" alt="Wrong!" style="max-width: 200px; max-height: 200px;">
         `;
         wrongImg.style.position = 'fixed';
-        wrongImg.style.bottom = '-300px'; // Start below screen
-        wrongImg.style.left = '50%';
+        wrongImg.style.top = `${window.innerHeight}px`; // Start below screen
+        wrongImg.style.left = `${buttonRect.left + buttonRect.width / 2}px`;
         wrongImg.style.transform = 'translateX(-50%)';
         wrongImg.style.zIndex = '9999';
-        wrongImg.style.transition = 'bottom 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        wrongImg.style.transition = 'top 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
         
         document.body.appendChild(wrongImg);
         
         // Bounce in from bottom to bonk the incorrect answer
         setTimeout(() => {
-            wrongImg.style.bottom = `${targetBottom}px`;
+            wrongImg.style.top = `${targetTop}px`;
         }, 50);
         
         // Bounce out after delay
         setTimeout(() => {
-            wrongImg.style.bottom = '-300px';
+            wrongImg.style.top = `${window.innerHeight}px`;
             setTimeout(() => wrongImg.remove(), 500);
         }, 1500);
     }
