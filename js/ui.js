@@ -242,11 +242,12 @@ class UIManager {
                         <div id="video-player-${questionIndex}"></div>
                     </div>
                 ` : ''}
-                <div class="clue-display" onclick="window.uiManager.showClueModal('${config.assets.clues}${question.clue.filename}', '${question.clue.title}')">
-                    <img src="${config.assets.clues}${question.clue.thumbnail}" 
+                <div class="welcome-clue">
+                    <h3>${question.clue.title}</h3>
+                    <img src="${config.assets.clues}${question.clue.filename}" 
                          alt="${question.clue.title}" 
-                         class="clue-thumbnail">
-                    <span>View ${question.clue.title}</span>
+                         class="clue-image"
+                         onclick="window.uiManager.showClueModal('${config.assets.clues}${question.clue.filename}', '${question.clue.title}')">
                 </div>
                 <button class="button continue-button" onclick="window.uiManager.nextQuestion()">
                     Next Question

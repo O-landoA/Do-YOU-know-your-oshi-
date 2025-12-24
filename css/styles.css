@@ -45,11 +45,11 @@ body {
 /* Corner Sticker */
 .corner-sticker {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 100px;
-    height: 100px;
-    z-index: 1000;
+    bottom: -20px;
+    right: -20px;
+    width: 150px;
+    height: 150px;
+    z-index: 10;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
