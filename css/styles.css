@@ -23,7 +23,7 @@ body {
 
 /* Glitch effect for background */
 .app-container.glitch-active-bg {
-    animation: backgroundGlitch 2s infinite;
+    animation: backgroundGlitch 0.5s infinite;
     background-color: #ff00ff;
     background-image: 
         repeating-linear-gradient(
@@ -40,21 +40,41 @@ body {
         background-color: var(--bg-primary);
         filter: hue-rotate(0deg);
     }
-    20% { 
+    10% { 
         background-color: #ff00ff;
         filter: hue-rotate(90deg) saturate(2);
     }
-    40% { 
+    20% { 
+        background-color: var(--bg-primary);
+        filter: hue-rotate(0deg);
+    }
+    30% { 
         background-color: #00ffff;
         filter: hue-rotate(180deg) saturate(2);
     }
-    60% { 
+    40% { 
+        background-color: var(--bg-primary);
+        filter: hue-rotate(0deg);
+    }
+    50% { 
         background-color: #ffff00;
         filter: hue-rotate(270deg) saturate(2);
     }
-    80% { 
+    60% { 
+        background-color: var(--bg-primary);
+        filter: hue-rotate(0deg);
+    }
+    70% { 
         background-color: #ff00ff;
         filter: hue-rotate(90deg) saturate(2);
+    }
+    80% { 
+        background-color: var(--bg-primary);
+        filter: hue-rotate(0deg);
+    }
+    90% { 
+        background-color: #00ff00;
+        filter: hue-rotate(45deg) saturate(2);
     }
 }
 
@@ -79,7 +99,7 @@ body {
     top: 20px;
     left: 30%;
     z-index: 10;
-    opacity: 0.6;
+    opacity: 1;
     transition: opacity 0.3s ease;
 }
 
