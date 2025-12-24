@@ -84,11 +84,20 @@ class UIManager {
                 case 'success':
                     this.showSuccessScreen(newState.currentQuestion);
                     break;
-                case 'password':
-                    this.showPasswordScreen();
+                case 'question7reward':
+                    this.showQuestion7RewardScreen();
                     break;
-                case 'completion':
-                    this.showCompletionScreen();
+                case 'finalPuzzle':
+                    this.showFinalPuzzleScreen();
+                    break;
+                case 'finalSuccess':
+                    this.showFinalSuccessScreen();
+                    break;
+                case 'postFinalSuccess':
+                    this.showPostFinalSuccessScreen();
+                    break;
+                case 'bathroomMessage':
+                    this.showBathroomMessageScreen();
                     break;
             }
         }
@@ -233,6 +242,9 @@ class UIManager {
                          alt="${question.clue.title}" 
                          class="clue-image"
                          onclick="window.uiManager.showClueModal('${config.assets.clues}${question.clue.filename}', '${question.clue.title}')">
+                    <p class="download-reminder" style="margin-top: 1rem; color: var(--accent-color);">
+                        Don't forget to download your clue!
+                    </p>
                 </div>
                 <button class="button continue-button" onclick="window.uiManager.nextQuestion()">
                     Next Question
@@ -320,6 +332,164 @@ class UIManager {
             </div>
         `;
         this.renderContent(html);
+    }
+    
+    // Show question 7 reward screen with glitch effect
+    showQuestion7RewardScreen() {
+        const question = getQuestion(7);
+        if (!question) return;
+        
+        // Add glitch effect to background
+        document.getElementById('app').classList.add('glitch-active-bg');
+        
+        const html = `
+            <div class="success-screen glitch-active">
+                <h2 class="success-title glitch-active">Correct!</h2>
+                <p class="trivia-text glitch-active">${question.trivia}</p>
+                ${question.videoId ? `
+                    <div class="video-container">
+                        <div id="video-player-7"></div>
+                    </div>
+                ` : ''}
+                <div class="clue-section">
+                    <h3 class="glitch-active">Final Clue Unlocked!</h3>
+                    <img src="${config.assets.clues}${question.clue.filename}" 
+                         alt="${question.clue.title}" 
+                         class="clue-image"
+                         onclick="window.uiManager.showClueModal('${config.assets.clues}${question.clue.filename}', '${question.clue.title}')">
+                    <p class="download-reminder" style="margin-top: 1rem; color: var(--accent-color);">
+                        Don't forget to download all your clues before proceeding!
+                    </p>
+                </div>
+                <button class="button continue-button glitch-active" onclick="window.uiManager.showFinalPuzzle()">
+                    Continue to Final Puzzle
+                </button>
+            </div>
+        `;
+        this.renderContent(html);
+        this.lastScreen = 'question7reward';
+        
+        // Load video if present
+        if (question.videoId) {
+            setTimeout(() => {
+                window.videoManager?.createPlayer(
+                    `video-player-7`, 
+                    question.videoId,
+                    { autoplay: 0, muted: 1 }
+                );
+            }, 500);
+        }
+    }
+    
+    // Show final puzzle screen (8-letter password)
+    showFinalPuzzleScreen() {
+        const html = `
+            <div class="password-screen glitch-active-bg">
+                <h2 class="password-title glitch-active">Enter the Secret Code</h2>
+                <p style="margin-bottom: 1rem;">Eight letters to unlock the final surprise...</p>
+                <div class="password-boxes">
+                    ${Array.from({ length: 8 }, (_, i) => `
+                        <input type="text" 
+                               class="password-box ${state.password[i] ? 'filled' : ''}" 
+                               maxlength="1" 
+                               value="${state.password[i]}"
+                               data-index="${i}"
+                               oninput="window.uiManager.handlePasswordInput(${i}, this.value)"
+                               onclick="window.uiManager.focusPasswordBox(${i})"
+                               onkeydown="window.uiManager.handlePasswordKeydown(${i}, event)">
+                    `).join('')}
+                </div>
+                <button class="button continue-button glitch-active" onclick="window.uiManager.checkFinalPassword()">
+                    Submit
+                </button>
+                <button class="button" onclick="window.uiManager.clearPassword()" style="margin-top: 1rem;">
+                    Clear
+                </button>
+            </div>
+        `;
+        this.renderContent(html);
+        
+        // Focus first empty box
+        this.focusNextPasswordBox();
+    }
+    
+    // Check final password
+    checkFinalPassword() {
+        const enteredPassword = state.password.join('').toUpperCase();
+        if (enteredPassword === 'ILOVEYOU') {
+            // Remove glitch effects
+            document.getElementById('app').classList.remove('glitch-active-bg');
+            updateState({ 
+                currentScreen: 'finalSuccess',
+                passwordEntered: true
+            });
+        } else {
+            // Shake effect for wrong password
+            const passwordScreen = document.querySelector('.password-screen');
+            passwordScreen.classList.add('shake');
+            setTimeout(() => passwordScreen.classList.remove('shake'), 500);
+        }
+    }
+    
+    // Show final success screen
+    showFinalSuccessScreen() {
+        const html = `
+            <div class="final-success-screen">
+                <div class="ina-image bounce-in">
+                    <img src="${config.assets.images}ina-celebration.png" alt="Ina'nis" width="200" height="200">
+                </div>
+                <h1 class="completion-title">You did it!</h1>
+                <p class="completion-message">You won the silly little game! I hope you didn't have to cheat, or SantINA (Santa-Ina?) will know and bonk you...</p>
+                <p class="completion-message">Well, time to move onto the next adventure!</p>
+                <p class="completion-message" style="margin-top: 1rem;">Unless... maybe we're not quite done yet?</p>
+                <button class="button continue-button" onclick="window.uiManager.showPostFinalSuccess()">
+                    You gently open the door
+                </button>
+            </div>
+        `;
+        this.renderContent(html);
+    }
+    
+    // Show post-final success screen with WAH quote
+    showPostFinalSuccessScreen() {
+        const html = `
+            <div class="post-final-screen">
+                <div class="quote-container">
+                    <p class="ina-quote">"Wah is a magic spell. When you hear the WAH, everything will be fine"</p>
+                    <p class="quote-attribution">~Ninomae Ina'nis, circa 2021</p>
+                </div>
+                <button class="button continue-button" onclick="window.uiManager.showBathroomMessage()">
+                    Proclaim your WAH
+                </button>
+            </div>
+        `;
+        this.renderContent(html);
+    }
+    
+    // Show bathroom message final screen
+    showBathroomMessageScreen() {
+        const html = `
+            <div class="bathroom-screen">
+                <p class="bathroom-message">Sorry I couldn't be there, but I could be in your bathroom? Maybe in the corner of the cupboard? By the toilet? On the left hand side by the toilet bucket? Maybe, maybe, maybe...</p>
+                <button class="button continue-button" onclick="window.uiManager.restart()">
+                    Start Over
+                </button>
+            </div>
+        `;
+        this.renderContent(html);
+    }
+    
+    // Navigation methods for onclick handlers
+    showFinalPuzzle() {
+        updateState({ currentScreen: 'finalPuzzle' });
+    }
+    
+    showPostFinalSuccess() {
+        updateState({ currentScreen: 'postFinalSuccess' });
+    }
+    
+    showBathroomMessage() {
+        updateState({ currentScreen: 'bathroomMessage' });
     }
     
     // Handle answer selection
@@ -650,6 +820,8 @@ class UIManager {
     nextQuestion() {
         if (state.currentQuestion >= getTotalQuestions()) {
             updateState({ currentScreen: 'password' });
+        } else if (state.currentQuestion === 7) { // After completing question 7
+            updateState({ currentScreen: 'question7reward' });
         } else {
             updateState({ currentScreen: 'question' });
         }

@@ -18,6 +18,44 @@ body {
     align-items: center;
     min-height: 100vh;
     padding: var(--space-xl);
+    transition: all 0.3s ease;
+}
+
+/* Glitch effect for background */
+.app-container.glitch-active-bg {
+    animation: backgroundGlitch 2s infinite;
+    background-color: #ff00ff;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(255, 0, 255, 0.1) 0px,
+            rgba(255, 0, 255, 0.1) 1px,
+            transparent 1px,
+            transparent 2px
+        );
+}
+
+@keyframes backgroundGlitch {
+    0%, 100% { 
+        background-color: var(--bg-primary);
+        filter: hue-rotate(0deg);
+    }
+    20% { 
+        background-color: #ff00ff;
+        filter: hue-rotate(90deg) saturate(2);
+    }
+    40% { 
+        background-color: #00ffff;
+        filter: hue-rotate(180deg) saturate(2);
+    }
+    60% { 
+        background-color: #ffff00;
+        filter: hue-rotate(270deg) saturate(2);
+    }
+    80% { 
+        background-color: #ff00ff;
+        filter: hue-rotate(90deg) saturate(2);
+    }
 }
 
 /* Central Card */
@@ -683,6 +721,70 @@ body {
 .clue-label {
     color: var(--text-secondary);
     font-size: var(--font-size-sm);
+}
+
+/* Download reminder styling */
+.download-reminder {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    animation: pulse 2s infinite;
+}
+
+/* Final success screen */
+.final-success-screen {
+    text-align: center;
+    padding: var(--space-xl);
+}
+
+.final-success-screen .completion-message {
+    margin: var(--space-md) 0;
+    line-height: 1.6;
+}
+
+/* Post-final screen with quote */
+.post-final-screen {
+    text-align: center;
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.quote-container {
+    margin-bottom: var(--space-xl);
+}
+
+.ina-quote {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    line-height: 1.8;
+}
+
+.quote-attribution {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Bathroom message screen */
+.bathroom-screen {
+    text-align: center;
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.bathroom-message {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xl);
+    white-space: pre-wrap;
 }
 
 /* Responsive Design */

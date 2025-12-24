@@ -27,7 +27,7 @@ class QuizApp {
             this.modules.ui.showLoadingScreen();
             
             // Load saved state
-            const savedState = loadState();
+            this.savedState = loadState();
             
             // Initialize modules
             await this.initializeModules();
@@ -113,15 +113,15 @@ class QuizApp {
         }, 100);
         
         // Determine initial screen
-        if (!savedState || savedState.progress.currentQuestion === 0) {
+        if (!this.savedState || this.savedState.progress.currentQuestion === 0) {
             // First time playing or no saved state
             this.modules.ui.showOnboardingScreen();
-        } else if (savedState.progress.currentQuestion >= 7) {
+        } else if (this.savedState.progress.currentQuestion >= 7) {
             // Already completed
             this.modules.ui.showPasswordScreen();
         } else {
             // Resume from saved progress
-            this.modules.ui.showQuestionScreen(savedState.progress.currentQuestion);
+            this.modules.ui.showQuestionScreen(this.savedState.progress.currentQuestion);
         }
         
         debugLog('Quiz App started');

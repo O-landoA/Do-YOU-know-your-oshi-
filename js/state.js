@@ -28,7 +28,7 @@ export const state = {
     videoPlaying: false,
     currentPasswordBox: 0,
     glitchActive: true,
-    currentScreen: 'loading', // loading, onboarding, question, success, password, completion
+    currentScreen: 'loading', // loading, onboarding, question, success, question7reward, finalPuzzle, finalSuccess, postFinalSuccess, bathroomMessage
     
     // Session Data
     startTime: null,
