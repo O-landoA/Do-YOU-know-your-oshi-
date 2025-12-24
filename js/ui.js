@@ -282,23 +282,24 @@ class UIManager {
     showPasswordScreen() {
         const html = `
             <div class="password-screen ${state.glitchActive ? 'glitch-active-bg' : ''}">
-                <h2 class="password-title ${state.glitchActive ? 'glitch-active' : ''}">Enter the Secret Code</h2>
-                <div class="password-boxes">
+                <h2 class="password-title ${state.glitchActive ? 'glitch-active' : ''}" style="transform: rotate(2deg) translateX(15px); margin-left: -20px;">Enter the Secret Code</h2>
+                <div class="password-boxes" style="transform: rotate(-1deg) translateX(-10px); display: flex; gap: 8px; justify-content: center;">
                     ${Array.from({ length: 8 }, (_, i) => `
                         <input type="text" 
                                class="password-box ${state.password[i] ? 'filled' : ''}" 
                                maxlength="1" 
                                value="${state.password[i]}"
                                data-index="${i}"
+                               style="${i % 2 === 0 ? 'transform: rotate(1deg) translateY(2px);' : 'transform: rotate(-1deg) translateY(-2px);'}"
                                oninput="window.uiManager.handlePasswordInput(${i}, this.value)"
                                onclick="window.uiManager.focusPasswordBox(${i})"
                                onkeydown="window.uiManager.handlePasswordKeydown(${i}, event)">
                     `).join('')}
                 </div>
-                <button class="button continue-button" onclick="window.uiManager.checkPassword()">
+                <button class="button continue-button" onclick="window.uiManager.checkPassword()" style="transform: rotate(2deg) translateX(-15px); margin-right: -30px;">
                     Submit
                 </button>
-                <button class="button" onclick="window.uiManager.clearPassword()" style="margin-top: 1rem;">
+                <button class="button" onclick="window.uiManager.clearPassword()" style="margin-top: 1rem; transform: rotate(-2deg) translateX(10px); margin-left: -20px;">
                     Clear
                 </button>
             </div>
