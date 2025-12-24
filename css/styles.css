@@ -228,17 +228,28 @@ body {
 }
 
 .welcome-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    margin-bottom: var(--space-lg);
+    height: 100%;
+    z-index: 0;
     border-radius: var(--radius-md);
     overflow: hidden;
+    pointer-events: none;
 }
 
 .welcome-bg-image {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.15;
     border-radius: var(--radius-md);
+}
+
+.onboarding-screen > * {
+    position: relative;
+    z-index: 1;
 }
 
 .welcome-title {
