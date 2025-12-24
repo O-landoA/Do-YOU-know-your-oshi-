@@ -341,14 +341,26 @@ class UIManager {
         const buttons = document.querySelectorAll('.answer-button');
         buttons.forEach(btn => btn.disabled = true);
         
-        // Mark selected button
-        buttons[answerIndex].classList.add(isCorrect ? 'correct' : 'incorrect');
+        // Add visual feedback to selected button
+        const selectedButton = buttons[answerIndex];
+        selectedButton.classList.add('pulse');
+        
+        setTimeout(() => {
+            selectedButton.classList.remove('pulse');
+            if (isCorrect) {
+                selectedButton.classList.add('correct');
+            } else {
+                selectedButton.classList.add('incorrect', 'shake');
+            }
+        }, 300);
         
         // Play sound effect
         window.audioManager?.playSFX(isCorrect ? 'correct' : 'wrong');
         
-        // Handle wrong answer
-        if (!isCorrect) {
+        // Handle correct or wrong answer animation
+        if (isCorrect) {
+            this.showSuccessAnimation();
+        } else {
             this.showWrongAnimation();
         }
         
@@ -394,8 +406,20 @@ class UIManager {
         // Play sound effect
         window.audioManager?.playSFX(isCorrect ? 'correct' : 'wrong');
         
-        // Handle wrong answer
-        if (!isCorrect) {
+        // Handle correct or wrong answer animation
+        if (isCorrect) {
+            input.classList.add('correct');
+            this.showSuccessAnimation();
+            
+            setTimeout(() => {
+                updateState({ 
+                    currentQuestion: state.currentQuestion + 1,
+                    score: state.score + 1,
+                    animating: false,
+                    currentScreen: 'success'
+                });
+            }, config.animations.bounceDuration);
+        } else {
             this.showWrongAnimation();
             input.classList.add('incorrect');
             
@@ -406,40 +430,69 @@ class UIManager {
                 input.value = '';
                 input.focus();
             }, config.animations.bounceDuration);
-        } else {
-            // Correct answer
-            input.classList.add('correct');
-            
-            setTimeout(() => {
-                updateState({ 
-                    currentQuestion: state.currentQuestion + 1,
-                    score: state.score + 1,
-                    animating: false,
-                    currentScreen: 'success'
-                });
-            }, config.animations.bounceDuration);
         }
         
         updateState({ animating: true });
     }
     
-    // Show wrong answer animation
+    // Show success animation (DDLC-style bounce from bottom)
+    showSuccessAnimation() {
+        // Pick a random success sticker
+        const randomSticker = config.successStickers[Math.floor(Math.random() * config.successStickers.length)];
+        
+        const successImg = document.createElement('div');
+        successImg.className = 'success-sticker ddlc-bounce-in';
+        successImg.innerHTML = `
+            <img src="${config.assets.images}${randomSticker}" alt="Success!" style="max-width: 300px; max-height: 300px;">
+        `;
+        successImg.style.position = 'fixed';
+        successImg.style.bottom = '-400px'; // Start below screen
+        successImg.style.left = '50%';
+        successImg.style.transform = 'translateX(-50%)';
+        successImg.style.zIndex = '9999';
+        successImg.style.transition = 'bottom 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        
+        document.body.appendChild(successImg);
+        
+        // Bounce in from bottom
+        setTimeout(() => {
+            successImg.style.bottom = '100px';
+        }, 50);
+        
+        // Bounce out after delay
+        setTimeout(() => {
+            successImg.style.bottom = '-400px';
+            setTimeout(() => successImg.remove(), 500);
+        }, 2000);
+    }
+    
+    // Show wrong answer animation (random GIF)
     showWrongAnimation() {
+        // Pick a random wrong GIF
+        const randomGif = config.wrongGifs[Math.floor(Math.random() * config.wrongGifs.length)];
+        
         const wrongImg = document.createElement('div');
-        wrongImg.className = 'wrong-animation bounce-in';
+        wrongImg.className = 'wrong-animation ddlc-bounce-in';
         wrongImg.innerHTML = `
-            <img src="${config.assets.images}ina-wrong.gif" alt="Wrong!" width="100" height="100">
+            <img src="${config.assets.images}${randomGif}" alt="Wrong!" style="max-width: 200px; max-height: 200px;">
         `;
         wrongImg.style.position = 'fixed';
-        wrongImg.style.bottom = '20px';
+        wrongImg.style.bottom = '-300px'; // Start below screen
         wrongImg.style.left = '50%';
         wrongImg.style.transform = 'translateX(-50%)';
         wrongImg.style.zIndex = '9999';
+        wrongImg.style.transition = 'bottom 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
         
         document.body.appendChild(wrongImg);
         
+        // Bounce in from bottom
         setTimeout(() => {
-            wrongImg.classList.add('bounce-out');
+            wrongImg.style.bottom = '80px';
+        }, 50);
+        
+        // Bounce out after delay
+        setTimeout(() => {
+            wrongImg.style.bottom = '-300px';
             setTimeout(() => wrongImg.remove(), 500);
         }, 1500);
     }

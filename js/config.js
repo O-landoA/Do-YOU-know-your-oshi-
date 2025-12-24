@@ -49,11 +49,26 @@ export const config = {
     
     // Asset paths
     assets: {
-        audio: 'assets/audio/',
         images: 'assets/images/',
+        audio: 'assets/audio/',
         clues: 'assets/clues/',
         icons: 'assets/icons/'
     },
+    
+    // Success stickers (cycle through these for correct answers)
+    successStickers: [
+        'Success/Ninomae_Ina\'nis_-_Portrait_VR_01.png',
+        'Success/Ninomae_Ina\'nis_-_Portrait_VR_02.png',
+        'Success/Ninomae_Ina\'nis_-_Portrait_VR_03.png',
+        'Success/Ninomae_Ina\'nis_-_Full_Illustration_Mini.png',
+        'Success/Merchandise_-_Kuso_Dekai_Takodachi.jpg'
+    ],
+    
+    // Wrong answer GIFs (cycle through these)
+    wrongGifs: [
+        'Failure/ina-bonk.gif',
+        'Failure/ina-bonk-2.gif'
+    ],
     
     // YouTube API
     youtube: {
