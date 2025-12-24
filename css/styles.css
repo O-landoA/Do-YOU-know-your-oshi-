@@ -109,6 +109,15 @@ body {
     }
 }
 
+/* Ensure mascot stays in position after animation */
+.left-mascot.mascot-restore {
+    animation: mascotBounceFade 1s ease-out forwards;
+}
+
+.left-mascot.mascot-restore.animation-complete {
+    transform: none;
+}
+
 /* Corner Sticker - Bottom Right GIF */
 .corner-sticker {
     position: absolute;

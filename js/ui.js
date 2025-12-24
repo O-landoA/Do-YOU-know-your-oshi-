@@ -828,6 +828,7 @@ class UIManager {
         if (this.elements.leftMascot) {
             this.elements.leftMascot.classList.add('mascot-restore');
             setTimeout(() => {
+                this.elements.leftMascot.classList.add('animation-complete');
                 this.elements.leftMascot.classList.remove('mascot-restore');
             }, 1000);
         }
