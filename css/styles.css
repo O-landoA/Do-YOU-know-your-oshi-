@@ -31,7 +31,7 @@ body {
 }
 
 .central-card {
-    background-color: var(--bg-primary);
+    background-color: #FFFFFF;
     border-radius: var(--radius-lg);
     padding: var(--space-2xl);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -44,12 +44,12 @@ body {
 
 /* Corner Sticker */
 .corner-sticker {
-    position: absolute;
+    position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 80px;
-    height: 80px;
-    z-index: 100;
+    width: 100px;
+    height: 100px;
+    z-index: 1000;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -407,8 +407,10 @@ body {
 
 /* Answer Buttons */
 .answers-grid {
-    display: grid;
-    gap: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-top: var(--space-xxl);
     animation: fadeInUp 0.5s ease 0.2s both;
 }
 
@@ -416,10 +418,11 @@ body {
     background-color: var(--bg-primary);
     border: 2px solid var(--border);
     border-radius: var(--radius-md);
-    padding: var(--space-lg);
-    text-align: left;
-    transition: all var(--transition-normal);
+    padding: var(--space-xl);
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
     cursor: pointer;
+    transition: all var(--transition-normal);
     position: relative;
     overflow: hidden;
 }
