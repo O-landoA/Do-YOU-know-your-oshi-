@@ -25,7 +25,7 @@ export const quizContent = {
         "100"
       ],
       correct: 1, // Index of correct answer (0-based)
-      trivia: "<em>Her surname, Ninomae, is simply written with the kanji "一". \"Ni no mae\" means \"before two.\" It is an example of nanori, or idiosyncratic readings of kanji which only appear in names.</em>",
+      trivia: "<em>Her surname, Ninomae, is simply written with the kanji \"一\". \"Ni no mae\" means \"before two.\" It is an example of nanori, or idiosyncratic readings of kanji which only appear in names.</em>",
       videoId: null, // YouTube video ID or null for no video
       clue: {
         filename: "clue-1.png",
@@ -80,7 +80,7 @@ export const quizContent = {
         "11"
       ],
       correct: 2,
-      trivia: "<em>\Banger streams, you might not watch it but it came out during the era when I was really into DnD and actually inspired me to DM travelling in Cambodia!\</em><br><a href='https://www.youtube.com/playlist?list=PLQZecHYc3j2pIhdKqZwb7Jz73laAsLKYE' target='_blank' style='color: var(--accent-color);'>Watch full playlist</a>",
+      trivia: "<em>\"Banger streams, you might not watch it but it came out during the era when I was really into DnD and actually inspired me to DM travelling in Cambodia!\"</em><br><a href='https://www.youtube.com/playlist?list=PLQZecHYc3j2pIhdKqZwb7Jz73laAsLKYE' target='_blank' style='color: var(--accent-color);'>Watch full playlist</a>",
       playlistId: "PLQZecHYc3j2pIhdKqZwb7Jz73laAsLKYE", // Playlist instead of single video
       clue: {
         filename: "clue-4.png",
