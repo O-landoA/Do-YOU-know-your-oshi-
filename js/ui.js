@@ -357,19 +357,20 @@ class UIManager {
         
         const html = `
             <div class="reward-screen glitch-active">
-                <h2 class="reward-title glitch-active">Question 7 Complete!</h2>
-                <p class="reward-text">You've proven yourself worthy...</p>
-                <div class="clue-display">
-                    <h3>Final Clue Unlocked!</h3>
+                <h2 class="reward-title glitch-active" style="transform: rotate(2deg) translateX(10px);">Question 7 Complete!</h2>
+                <p class="reward-text" style="transform: rotate(-1deg) translateX(-5px); text-align: right;">You've proven yourself worthy...</p>
+                <div class="clue-display" style="transform: rotate(1deg) scale(0.95); margin-left: 20px;">
+                    <h3 style="transform: rotate(-2deg); text-align: right;">Final Clue Unlocked!</h3>
                     <img src="${config.assets.clues}${question.clue.filename}" 
                          alt="${question.clue.title}" 
                          class="clue-image"
+                         style="transform: rotate(3deg) scaleX(-1);"
                          onclick="window.uiManager.showClueModal('${config.assets.clues}${question.clue.filename}', '${question.clue.title}')">
-                    <p class="download-reminder" style="margin-top: 1rem; color: var(--accent-color);">
-                        Don't forget to download all your clues before proceeding!
+                    <p class="download-reminder" style="margin-top: 1rem; color: var(--accent-color); transform: rotate(-1deg);">
+                        Procreate might offer a new perspective on those clues, perchance...
                     </p>
                 </div>
-                <button class="button continue-button glitch-active" onclick="window.uiManager.showFinalPuzzle()">
+                <button class="button continue-button glitch-active" style="transform: rotate(2deg) translateX(-10px);" onclick="window.uiManager.showFinalPuzzle()">
                     Continue to Final Puzzle
                 </button>
             </div>

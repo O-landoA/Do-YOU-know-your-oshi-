@@ -77,9 +77,9 @@ body {
 .left-mascot {
     position: fixed;
     top: 20px;
-    left: 20px;
+    left: 30%;
     z-index: 10;
-    opacity: 0.8;
+    opacity: 0.6;
     transition: opacity 0.3s ease;
 }
 
