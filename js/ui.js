@@ -251,12 +251,17 @@ class UIManager {
         
         // Load video if present
         if (question.videoId) {
+            debugLog('Loading video for question:', questionIndex, 'videoId:', question.videoId);
             setTimeout(() => {
-                window.videoManager?.createPlayer(
-                    `video-player-${questionIndex}`, 
-                    question.videoId,
-                    { autoplay: 0, muted: 1 }
-                );
+                if (window.videoManager) {
+                    window.videoManager.createPlayer(
+                        `video-player-${questionIndex}`, 
+                        question.videoId,
+                        { autoplay: 0, muted: 1 }
+                    );
+                } else {
+                    console.error('VideoManager not available');
+                }
             }, 500); // Increased delay to ensure DOM is ready
         }
     }
@@ -523,7 +528,6 @@ class UIManager {
         setTimeout(() => {
             if (isCorrect) {
                 updateState({ 
-                    currentQuestion: state.currentQuestion + 1,
                     score: state.score + 1,
                     animating: false,
                     currentScreen: 'success'
@@ -571,7 +575,6 @@ class UIManager {
             
             setTimeout(() => {
                 updateState({ 
-                    currentQuestion: state.currentQuestion + 1,
                     score: state.score + 1,
                     animating: false,
                     currentScreen: 'success'
@@ -813,6 +816,11 @@ class UIManager {
     
     // Next question
     nextQuestion() {
+        // Increment currentQuestion when moving to next screen
+        updateState({ 
+            currentQuestion: state.currentQuestion + 1
+        });
+        
         if (state.currentQuestion >= getTotalQuestions()) {
             updateState({ currentScreen: 'password' });
         } else if (state.currentQuestion === 7) { // After completing question 7
