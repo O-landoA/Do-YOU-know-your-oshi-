@@ -2,7 +2,7 @@
 
 import { config } from './config.js';
 import { debugLog } from './config.js';
-import { updateState } from './state.js';
+import { updateState, state } from './state.js';
 
 class AudioManager {
     constructor() {
