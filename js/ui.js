@@ -373,7 +373,8 @@ class UIManager {
                          style="transform: translateX(0) scaleX(-1);"
                          onclick="window.uiManager.showClueModal('${config.assets.clues}${question.clue.filename}', '${question.clue.title}')">
                     <p class="download-reminder" style="margin-top: 1rem; color: var(--accent-color); transform: translateX(0);">
-                        Procreate might offer a new perspective on those clues, perchance...
+                        Procreate might offer a new perspective on those clues, perchance...<br>
+                        <strong style="color: var(--text-primary);">Download unless you want to have a bad time</strong>
                     </p>
                 </div>
                 <button class="button continue-button glitch-active" style="transform: translateX(0);" onclick="window.uiManager.showFinalPuzzle()">
