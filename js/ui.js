@@ -236,7 +236,7 @@ class UIManager {
         const html = `
             <div class="success-screen">
                 <div class="success-tako-corner">
-                    <img src="${config.assets.images}Success/Merchandise_-_Kuso_Dekai_Takodachi.jpg" alt="Tako">
+                    <img src="${config.assets.images}hololive-vtuber.gif" alt="Tako">
                 </div>
                 <h2 class="success-title">Correct!</h2>
                 <p class="trivia-text">${question.trivia}</p>
