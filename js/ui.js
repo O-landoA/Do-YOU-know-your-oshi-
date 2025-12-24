@@ -233,7 +233,7 @@ class UIManager {
         const html = `
             <div class="success-screen">
                 <div class="success-tako-corner">
-                    <img src="${config.assets.images}ao8qxx5y1yn71.jpg" alt="Tako">
+                    <img src="${config.assets.images}Success/Merchandise_-_Kuso_Dekai_Takodachi.jpg" alt="Tako">
                 </div>
                 <h2 class="success-title">Correct!</h2>
                 <p class="trivia-text">${question.trivia}</p>
@@ -351,27 +351,22 @@ class UIManager {
         const selectedButton = buttons[answerIndex];
         selectedButton.classList.add('pulse');
         
+        // Play sound effect
+        window.audioManager?.playSFX(isCorrect ? 'correct' : 'wrong');
+        
+        // Update state to prevent multiple clicks
+        updateState({ animating: true });
+        
         setTimeout(() => {
             selectedButton.classList.remove('pulse');
             if (isCorrect) {
                 selectedButton.classList.add('correct');
+                this.showSuccessAnimation();
             } else {
                 selectedButton.classList.add('incorrect', 'shake');
+                this.showWrongAnimation();
             }
         }, 300);
-        
-        // Play sound effect
-        window.audioManager?.playSFX(isCorrect ? 'correct' : 'wrong');
-        
-        // Handle correct or wrong answer animation
-        if (isCorrect) {
-            this.showSuccessAnimation();
-        } else {
-            this.showWrongAnimation();
-        }
-        
-        // Update state
-        updateState({ animating: true });
         
         // Show result after animation
         setTimeout(() => {
