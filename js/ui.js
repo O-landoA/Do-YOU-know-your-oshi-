@@ -133,6 +133,7 @@ class UIManager {
     
     // Show onboarding screen
     showOnboardingScreen() {
+        const welcomeClue = quizContent.welcomeClue;
         const html = `
             <div class="onboarding-screen">
                 <div class="ina-image bounce-in">
@@ -140,6 +141,13 @@ class UIManager {
                 </div>
                 <h1>Do you know Your Oshi?</h1>
                 <p>Test your knowledge about Ninomae Ina'nis!</p>
+                <div class="welcome-clue">
+                    <h3>${welcomeClue.title}</h3>
+                    <img src="${config.assets.clues}${welcomeClue.filename}" 
+                         alt="${welcomeClue.title}" 
+                         class="clue-image"
+                         onclick="window.uiManager.showClueModal('${config.assets.clues}${welcomeClue.filename}', '${welcomeClue.title}')">
+                </div>
                 <button class="button continue-button" onclick="window.uiManager.startQuiz()">
                     Start Quiz
                 </button>
@@ -229,15 +237,12 @@ class UIManager {
                         <div id="video-player-${questionIndex}"></div>
                     </div>
                 ` : ''}
-                <a href="${config.assets.clues}${question.clue.filename}" 
-                   class="clue-download" 
-                   download="${question.clue.filename}"
-                   onclick="window.uiManager.trackClueDownload(${question.id})">
+                <div class="clue-display" onclick="window.uiManager.showClueModal('${config.assets.clues}${question.clue.filename}', '${question.clue.title}')">
                     <img src="${config.assets.clues}${question.clue.thumbnail}" 
                          alt="${question.clue.title}" 
                          class="clue-thumbnail">
-                    Download ${question.clue.title}
-                </a>
+                    <span>View ${question.clue.title}</span>
+                </div>
                 <button class="button continue-button" onclick="window.uiManager.nextQuestion()">
                     Next Question
                 </button>
@@ -572,6 +577,13 @@ class UIManager {
     showClue(filename, title) {
         document.getElementById('clueTitle').textContent = title;
         this.elements.clueViewer.src = `${config.assets.clues}${filename}`;
+        this.elements.clueModal.classList.add('active');
+    }
+    
+    // Show clue modal (alias for showClue with full path)
+    showClueModal(fullPath, title) {
+        document.getElementById('clueTitle').textContent = title;
+        this.elements.clueViewer.src = fullPath;
         this.elements.clueModal.classList.add('active');
     }
     

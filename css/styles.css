@@ -188,7 +188,33 @@ body {
 /* Onboarding Screen */
 .onboarding-screen {
     text-align: center;
-    animation: fadeInDown 0.6s ease;
+    animation: fadeIn 0.5s ease;
+}
+
+.welcome-clue {
+    margin: var(--space-xl) 0;
+    padding: var(--space-lg);
+    background-color: rgba(197, 179, 230, 0.1);
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border);
+}
+
+.welcome-clue h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+    font-size: var(--font-size-lg);
+}
+
+.clue-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: transform var(--transition-normal);
+}
+
+.clue-image:hover {
+    transform: scale(1.02);
 }
 
 .onboarding-screen h1 {

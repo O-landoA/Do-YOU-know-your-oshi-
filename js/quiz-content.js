@@ -6,6 +6,13 @@ export const quizContent = {
   // Quiz configuration
   password: "TAKODACHI", // 8-letter password for final screen
   
+  // Clue 0 - shown on welcome screen before quiz starts
+  welcomeClue: {
+    filename: "clue-0.png",
+    thumbnail: "clue-0.png",
+    title: "Clue 0: The Beginning"
+  },
+  
   // Questions array
   questions: [
     {
@@ -21,8 +28,8 @@ export const quizContent = {
       trivia: "Her surname, Ninomae, is simply written with the kanji 一, meaning \"one.\" This is a kanji pun; \"ni no mae\" means \"before two.\" It is an example of nanori, or idiosyncratic readings of kanji which only appear in names.",
       videoId: null, // YouTube video ID or null for no video
       clue: {
-        filename: "clue-1.pdf",
-        thumbnail: "clue-1-thumb.jpg",
+        filename: "clue-1.png",
+        thumbnail: "clue-1.png",
         title: "Clue 1"
       }
     },
@@ -40,8 +47,8 @@ export const quizContent = {
       videoId: "yoYaAVixPg8", // Will show at 1h18m12s
       videoId2: "u2IwXhwO4Tc", // Second video for this question
       clue: {
-        filename: "clue-2.pdf",
-        thumbnail: "clue-2-thumb.jpg",
+        filename: "clue-2.png",
+        thumbnail: "clue-2.png",
         title: "Clue 2"
       }
     },
@@ -58,8 +65,8 @@ export const quizContent = {
       trivia: "The 8th WAH (We Adore Her) was officially canonised during Pokémon Violet Stream #8.",
       videoId: "gQoGK9YDcEY", // Will show at 1h3m
       clue: {
-        filename: "clue-3.pdf",
-        thumbnail: "clue-3-thumb.jpg",
+        filename: "clue-3.png",
+        thumbnail: "clue-3.png",
         title: "Clue 3"
       }
     },
@@ -76,8 +83,8 @@ export const quizContent = {
       trivia: "The TTRPG - Myth Breakers playlist contains 9 episodes of tabletop RPG adventures with the Myth members.",
       playlistId: "PLQZecHYc3j2pIhdKqZwb7Jz73laAsLKYE", // Playlist instead of single video
       clue: {
-        filename: "clue-4.pdf",
-        thumbnail: "clue-4-thumb.jpg",
+        filename: "clue-4.png",
+        thumbnail: "clue-4.png",
         title: "Clue 4"
       }
     },
@@ -94,8 +101,8 @@ export const quizContent = {
       trivia: "Yes, I just wanted an excuse to make you read as many of them as I could. No, I'm not sorry!",
       videoId: null,
       clue: {
-        filename: "clue-5.pdf",
-        thumbnail: "clue-5-thumb.jpg",
+        filename: "clue-5.png",
+        thumbnail: "clue-5.png",
         title: "Clue 5"
       }
     },
@@ -112,8 +119,8 @@ export const quizContent = {
       trivia: "It appears in the medieval Latin poem O Fortuna, in the line \"Sors immanis et inanis,\" meaning \"monstrous and empty fate.\" It was famously set to music in Carl Orff's Carmina Burana, but this line is perhaps best known to video gamers for its appearance as a lyric in Final Fantasy VII's \"One-Winged Angel.\"",
       videoId: null,
       clue: {
-        filename: "clue-6.pdf",
-        thumbnail: "clue-6-thumb.jpg",
+        filename: "clue-6.png",
+        thumbnail: "clue-6.png",
         title: "Clue 6"
       }
     },
@@ -127,8 +134,8 @@ export const quizContent = {
       trivia: "That's right - only one human in Hololive Myth!",
       videoId: null,
       clue: {
-        filename: "clue-7.pdf",
-        thumbnail: "clue-7-thumb.jpg",
+        filename: "clue-7.png",
+        thumbnail: "clue-7.png",
         title: "Clue 7"
       }
     }
@@ -138,8 +145,8 @@ export const quizContent = {
   finalReward: {
     message: "Congratulations! You've proven yourself a true Takodachi!",
     finalClue: {
-      filename: "final-clue.pdf",
-      title: "The Location of Ina'nis's Gift"
+      filename: "final-clue.png",
+      title: "The Final Clue"
     },
     location: "Check under your desk - there's a surprise waiting!"
   }
