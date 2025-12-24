@@ -167,6 +167,7 @@ class UIManager {
             </div>
         `;
         this.renderContent(html);
+        this.lastScreen = 'onboarding';
     }
     
     // Show question screen
