@@ -69,6 +69,9 @@ class QuizApp {
     start() {
         debugLog('Starting Quiz App...');
         
+        // Expose uiManager globally for button onclick handlers
+        window.uiManager = this.modules.ui;
+        
         // Start session tracking
         startSession();
         
