@@ -189,6 +189,43 @@ body {
 .onboarding-screen {
     text-align: center;
     animation: fadeIn 0.5s ease;
+    position: relative;
+}
+
+.welcome-backdrop {
+    width: 100%;
+    margin-bottom: var(--space-lg);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.welcome-bg-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-md);
+}
+
+.welcome-title {
+    color: var(--text-primary);
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+}
+
+.welcome-subtitle {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    opacity: 0.7;
+    margin-bottom: var(--space-md);
+    font-style: italic;
+}
+
+.welcome-tagline {
+    color: var(--text-primary);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-xl);
 }
 
 .welcome-clue {
