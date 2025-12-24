@@ -441,10 +441,9 @@ class UIManager {
     
     // Show final success screen
     showFinalSuccessScreen() {
-        // Remove glitch effect and restore mascot with animation
+        // Remove glitch effect and restore mascot
         document.body.classList.remove('glitch-background');
         this.updateMascot('ina-welcome');
-        this.animateMascotRestore();
         
         const html = `
             <div class="final-success-screen">
@@ -823,16 +822,6 @@ class UIManager {
     updateMascot(imageName) {
         if (this.elements.mascotImage) {
             this.elements.mascotImage.src = `${config.assets.images}${imageName}.png`;
-        }
-    }
-    
-    // Add bounce/fade animation to mascot
-    animateMascotRestore() {
-        if (this.elements.leftMascot) {
-            this.elements.leftMascot.classList.add('mascot-restore');
-            setTimeout(() => {
-                this.elements.leftMascot.classList.remove('mascot-restore');
-            }, 1000);
         }
     }
     
