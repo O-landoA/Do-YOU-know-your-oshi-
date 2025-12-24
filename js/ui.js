@@ -87,26 +87,29 @@ class UIManager {
     handleStateChange(newState) {
         debugLog('UI handling state change:', newState.currentScreen);
         
-        // Update screen based on state
-        switch (newState.currentScreen) {
-            case 'loading':
-                this.showLoadingScreen();
-                break;
-            case 'onboarding':
-                this.showOnboardingScreen();
-                break;
-            case 'question':
-                this.showQuestionScreen(newState.currentQuestion);
-                break;
-            case 'success':
-                this.showSuccessScreen(newState.currentQuestion);
-                break;
-            case 'password':
-                this.showPasswordScreen();
-                break;
-            case 'completion':
-                this.showCompletionScreen();
-                break;
+        // Only re-render if the screen actually changed
+        if (newState.currentScreen !== state.currentScreen) {
+            // Update screen based on state
+            switch (newState.currentScreen) {
+                case 'loading':
+                    this.showLoadingScreen();
+                    break;
+                case 'onboarding':
+                    this.showOnboardingScreen();
+                    break;
+                case 'question':
+                    this.showQuestionScreen(newState.currentQuestion);
+                    break;
+                case 'success':
+                    this.showSuccessScreen(newState.currentQuestion);
+                    break;
+                case 'password':
+                    this.showPasswordScreen();
+                    break;
+                case 'completion':
+                    this.showCompletionScreen();
+                    break;
+            }
         }
     }
     

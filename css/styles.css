@@ -40,6 +40,7 @@ body {
     min-height: 500px;
     position: relative;
     animation: fadeIn 0.5s ease;
+    overflow: visible;
 }
 
 /* Corner Sticker */
@@ -486,7 +487,9 @@ body {
 /* Success Screen */
 .success-screen {
     text-align: center;
-    animation: fadeIn 0.4s ease;
+    animation: fadeIn 0.5s ease;
+    position: relative;
+    overflow: visible;
 }
 
 .success-title {
