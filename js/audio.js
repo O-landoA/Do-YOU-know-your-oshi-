@@ -56,8 +56,28 @@ class AudioManager {
     async playRandomQuestionTrack() {
         if (!this.initialized || !config.audio.enabled) return;
         
-        // Pick a random track number 1-7
-        const trackNumber = Math.floor(Math.random() * 7) + 1;
+        // Check current question number
+        const currentState = await import('./state.js').then(m => m.getState());
+        
+        // If on question 7, play track 7 specifically
+        if (currentState && currentState.currentQuestion === 6) { // Question 7 is index 6
+            this.stopAll();
+            this.currentAudio = new Audio(`${config.assets.audio}track-7.mp3`);
+            this.currentAudio.loop = true;
+            this.currentAudio.volume = config.audio.bgmVolume;
+            
+            // Handle autoplay restrictions
+            this.currentAudio.play().catch(e => {
+                debugLog('BGM autoplay blocked:', e);
+            });
+            
+            updateState({ bgmPlaying: true });
+            debugLog('Playing track 7 for question 7');
+            return;
+        }
+        
+        // For other questions, pick a random track from 1-6
+        const trackNumber = Math.floor(Math.random() * 6) + 1;
         
         this.stopAll();
         this.currentAudio = new Audio(`${config.assets.audio}track-${trackNumber}.mp3`);

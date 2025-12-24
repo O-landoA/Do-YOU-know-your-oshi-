@@ -25,7 +25,7 @@ export const quizContent = {
         "100"
       ],
       correct: 1, // Index of correct answer (0-based)
-      trivia: "Her surname, Ninomae, is simply written with the kanji 一, meaning \"one.\" This is a kanji pun; \"ni no mae\" means \"before two.\" It is an example of nanori, or idiosyncratic readings of kanji which only appear in names.",
+      trivia: "<em>Her surname, Ninomae, is simply written with the kanji 一, meaning \"one.\" This is a kanji pun; \"ni no mae\" means \"before two.\" It is an example of nanori, or idiosyncratic readings of kanji which only appear in names.</em>",
       videoId: null, // YouTube video ID or null for no video
       clue: {
         filename: "clue-1.png",
@@ -43,7 +43,7 @@ export const quizContent = {
         "8"
       ],
       correct: 0,
-      trivia: "First suggested by channel member Rayett Ray in chat of the original Ender Lilies #2 stream, as \"we all HYPE.\"",
+      trivia: "<em>Ina's first original song, \"VIOLET,\" was released on July 17, 2021. The song features her vocals and was well-received by fans.</em>",
       videoId: "yoYaAVixPg8", // Will show at 1h18m12s
       videoId2: "u2IwXhwO4Tc", // Second video for this question
       clue: {
@@ -62,7 +62,7 @@ export const quizContent = {
         "#8"
       ],
       correct: 3,
-      trivia: "The 8th WAH (We Adore Her) was officially canonised during Pokémon Violet Stream #8.",
+      trivia: "<em>The 8th WAH (We Adore Her) was officially canonised during Pokémon Violet Stream #8.</em>",
       videoId: "gQoGK9YDcEY", // Will show at 1h3m
       clue: {
         filename: "clue-3.png",
@@ -80,7 +80,7 @@ export const quizContent = {
         "11"
       ],
       correct: 2,
-      trivia: "The TTRPG - Myth Breakers playlist contains 9 episodes of tabletop RPG adventures with the Myth members.",
+      trivia: "<em>The TTRPG - Myth Breakers playlist contains 9 episodes of tabletop RPG adventures with the Myth members.</em>",
       playlistId: "PLQZecHYc3j2pIhdKqZwb7Jz73laAsLKYE", // Playlist instead of single video
       clue: {
         filename: "clue-4.png",
@@ -98,7 +98,7 @@ export const quizContent = {
         "12"
       ],
       correct: 0,
-      trivia: "Yes, I just wanted an excuse to make you read as many of them as I could. No, I'm not sorry!",
+      trivia: "<em>Yes, I just wanted an excuse to make you read as many of them as I could. No, I'm not sorry!</em>",
       videoId: null,
       clue: {
         filename: "clue-5.png",
@@ -116,7 +116,7 @@ export const quizContent = {
         "Two flat objects, 2"
       ],
       correct: 0,
-      trivia: "It appears in the medieval Latin poem O Fortuna, in the line \"Sors immanis et inanis,\" meaning \"monstrous and empty fate.\" It was famously set to music in Carl Orff's Carmina Burana, but this line is perhaps best known to video gamers for its appearance as a lyric in Final Fantasy VII's \"One-Winged Angel.\"",
+      trivia: "<em>It appears in the medieval Latin poem O Fortuna, in the line \"Sors immanis et inanis,\" meaning \"monstrous and empty fate.\" It was famously set to music in Carl Orff's Carmina Burana, but this line is perhaps best known to video gamers for its appearance as a lyric in Final Fantasy VII's \"One-Winged Angel.\"</em>",
       videoId: null,
       clue: {
         filename: "clue-6.png",
@@ -131,7 +131,7 @@ export const quizContent = {
       correctAnswer: "1", // The correct number answer
       answers: [], // No multiple choice for this question
       correct: null, // Not applicable for number input
-      trivia: "That's right - only one human in Hololive Myth!",
+      trivia: "<em>That's right - only one human in Hololive Myth!</em>",
       videoId: null,
       clue: {
         filename: "clue-7.png",

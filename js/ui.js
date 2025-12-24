@@ -237,9 +237,14 @@ class UIManager {
                          alt="${question.clue.title}" 
                          class="clue-image"
                          onclick="window.uiManager.showClueModal('${config.assets.clues}${question.clue.filename}', '${question.clue.title}')">
-                    <p class="download-reminder" style="margin-top: 1rem; color: var(--accent-color);">
-                        Don't forget to download your clue!
-                    </p>
+                    ${questionIndex >= 5 ? `
+                        <p class="download-reminder" style="margin-top: 1rem; color: var(--accent-color);">
+                            Don't forget to download your clue!
+                        </p>
+                        <p class="download-subtext" style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">
+                            You might need it
+                        </p>
+                    ` : ''}
                 </div>
                 <button class="button continue-button" onclick="window.uiManager.nextQuestion()">
                     Next Question
