@@ -57,8 +57,8 @@ body {
 /* Corner Sticker - Bottom Right GIF */
 .corner-sticker {
     position: absolute;
-    bottom: 40px;
-    right: 300px;
+    bottom: 38px;
+    right: 380px;
     width: 120px;
     height: 120px;
     z-index: 10;
@@ -299,6 +299,65 @@ body {
 /* Question Screen */
 .question-screen {
     animation: fadeIn 0.4s ease;
+}
+
+/* Glitch effect for Question 7 */
+.question-screen.question-7 {
+    animation: fadeInGlitch 0.4s ease, backgroundGlitch 2s infinite;
+    background-color: var(--bg-card);
+}
+
+@keyframes fadeInGlitch {
+    0% { opacity: 0; }
+    20% { opacity: 0.2; }
+    40% { opacity: 0.8; }
+    50% { opacity: 0.4; }
+    60% { opacity: 0.9; }
+    80% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+@keyframes backgroundGlitch {
+    0%, 100% { 
+        background-color: var(--bg-card);
+        filter: brightness(1);
+    }
+    10% { 
+        background-color: #4a3d5a;
+        filter: brightness(0.9);
+    }
+    20% { 
+        background-color: #3d324a;
+        filter: brightness(0.85);
+    }
+    30% { 
+        background-color: var(--bg-card);
+        filter: brightness(1.05);
+    }
+    40% { 
+        background-color: #453854;
+        filter: brightness(0.88);
+    }
+    50% { 
+        background-color: #3e334e;
+        filter: brightness(0.82);
+    }
+    60% { 
+        background-color: var(--bg-card);
+        filter: brightness(1.02);
+    }
+    70% { 
+        background-color: #423650;
+        filter: brightness(0.86);
+    }
+    80% { 
+        background-color: var(--bg-card);
+        filter: brightness(0.95);
+    }
+    90% { 
+        background-color: #3f344c;
+        filter: brightness(0.83);
+    }
 }
 
 /* Glitch text effect */

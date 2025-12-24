@@ -161,7 +161,7 @@ class UIManager {
         // Check if this is a number input question
         if (question.questionType === 'number-input') {
             const html = `
-                <div class="question-screen">
+                <div class="question-screen question-7">
                     <div class="question-header">
                         <div class="question-number">Question ${questionIndex + 1} of ${getTotalQuestions()}</div>
                         <div class="progress-bar">
@@ -192,8 +192,9 @@ class UIManager {
             }, 100);
         } else {
             // Regular multiple choice question
+            const questionClass = questionIndex === 6 ? 'question-screen question-7' : 'question-screen';
             const html = `
-                <div class="question-screen">
+                <div class="${questionClass}">
                     <div class="question-header">
                         <div class="question-number">Question ${questionIndex + 1} of ${getTotalQuestions()}</div>
                         <div class="progress-bar">
@@ -370,9 +371,6 @@ class UIManager {
                 // Re-enable buttons for retry
                 buttons.forEach(btn => btn.disabled = false);
             }
-        }, config.animations.bounceDuration);
-    }
-    
     // Check number answer for question 7
     checkNumberAnswer() {
         if (state.animating) return;
@@ -384,6 +382,12 @@ class UIManager {
         if (!userAnswer) {
             input.classList.add('shake');
             setTimeout(() => input.classList.remove('shake'), 500);
+            return;
+        }
+        
+        if (!question || !question.correctAnswer) {
+            console.error('Question or correctAnswer is undefined:', question);
+            debugLog('Error: Question or correctAnswer is undefined', question);
             return;
         }
         
@@ -443,11 +447,12 @@ class UIManager {
             <img src="${config.assets.images}${randomSticker}" alt="Success!" style="max-width: 300px; max-height: 300px;">
         `;
         successImg.style.position = 'fixed';
-        successImg.style.bottom = '-400px'; // Start below screen
+        successImg.style.bottom = '-500px'; // Start further below screen to ensure visibility
         successImg.style.left = `${randomLeft}%`;
         successImg.style.transform = 'translateX(-50%)';
         successImg.style.zIndex = '9999';
         successImg.style.transition = 'bottom 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        successImg.style.visibility = 'visible'; // Ensure it's visible throughout animation
         
         document.body.appendChild(successImg);
         
