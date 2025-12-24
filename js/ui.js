@@ -227,13 +227,8 @@ class UIManager {
                 </div>
                 <h2 class="success-title">Correct!</h2>
                 <p class="trivia-text">${question.trivia}</p>
-                ${question.videoId ? `
-                    <div class="video-container">
-                        <div id="video-player-${questionIndex}"></div>
-                    </div>
-                ` : ''}
-                <div class="welcome-clue">
-                    <h3>${question.clue.title}</h3>
+                <div class="clue-section">
+                    <h3>Clue Unlocked!</h3>
                     <img src="${config.assets.clues}${question.clue.filename}" 
                          alt="${question.clue.title}" 
                          class="clue-image"
@@ -245,6 +240,7 @@ class UIManager {
             </div>
         `;
         this.renderContent(html);
+        this.lastScreen = 'success';
         
         // Load video if present
         if (question.videoId) {
@@ -471,7 +467,7 @@ class UIManager {
         if (!incorrectButton) return;
         
         const buttonRect = incorrectButton.getBoundingClientRect();
-        const targetBottom = window.innerHeight - buttonRect.top + 20; // Position above the button
+        const targetBottom = window.innerHeight - buttonRect.top - 50; // Position above the button, adjusted down
         
         const wrongImg = document.createElement('div');
         wrongImg.className = 'wrong-animation ddlc-bounce-in';
@@ -620,6 +616,10 @@ class UIManager {
     // Start quiz
     startQuiz() {
         updateState({ currentScreen: 'question' });
+        // Ensure BGM plays on first user interaction
+        window.audioManager?.playBGM().catch(e => {
+            debugLog('BGM play failed on start quiz:', e);
+        });
         window.audioManager?.playRandomQuestionTrack();
     }
     

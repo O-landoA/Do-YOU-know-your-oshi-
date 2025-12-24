@@ -38,7 +38,7 @@ body {
 /* Left Mascot - Static Ina */
 .left-mascot {
     position: fixed;
-    top: calc(50vh - 250px);
+    top: calc(50vh - 320px);
     left: calc(50% - 400px - 100px);
     width: 180px;
     height: 180px;
@@ -57,8 +57,8 @@ body {
 /* Corner Sticker - Bottom Right GIF */
 .corner-sticker {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 60px;
+    right: 200px;
     width: 120px;
     height: 120px;
     z-index: 10;
