@@ -364,7 +364,7 @@ class UIManager {
         const html = `
             <div class="reward-screen glitch-active">
                 <h2 class="reward-title glitch-active" style="transform: translateX(250px); margin-left: -150px;">Question 7 Complete!</h2>
-                <p class="reward-text" style="text-align: right; margin-right: -100px;">You've proven yourself worthy...</p>
+                <p class="reward-text" style="text-align: right; margin-right: -100px; font-style: italic; max-width: 600px; line-height: 1.6;">"It claims there's only ONE HUMAN in HoloMyth. Who is it? It's me! Ame... Ame is british"<br><span style="font-size: 0.9em; opacity: 0.8;">- Ninomae Ina'nis, circa 2019</span></p>
                 <div class="clue-display" style="transform: translateX(0);">
                     <h3 style="text-align: right; margin-right: -50px;">Final Clue Unlocked!</h3>
                     <img src="${config.assets.clues}${question.clue.filename}" 
@@ -377,7 +377,7 @@ class UIManager {
                         <strong style="color: var(--text-primary);">Download unless you want to have a bad time</strong>
                     </p>
                 </div>
-                <button class="button continue-button glitch-active" style="transform: translateX(0);" onclick="window.uiManager.showFinalPuzzle()">
+                <button class="button continue-button glitch-active" style="transform: translateX(-10px);" onclick="window.uiManager.showFinalPuzzle()">
                     Continue to Final Puzzle
                 </button>
             </div>
